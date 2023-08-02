@@ -1,0 +1,88 @@
+#!/bin/bash
+
+cd $(dirname "$0")
+dir="$PWD"
+
+if [ "$1" = "--server" -o "$1" = "-s" ]; then
+  ServerMode="y"
+fi
+
+sudo dnf -y update
+
+if ! grep -R "^# Added for Speed" "/etc/dnf/dnf.conf"; then
+  echo "# Added For Speed" | sudo tee -a /etc/dnf/dnf.conf
+  #echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
+  echo "max_parallel_downloads=5" | sudo tee -a /etc/dnf/dnf.conf
+  echo "defaultyes=True" | sudo tee -a /etc/dnf/dnf.conf
+  echo "keepcache=True" | sudo tee -a /etc/dnf/dnf.conf
+fi
+
+sudo dnf -y install nano
+sudo dnf -y install neofetch
+
+# set bash profile $PS1
+if ! [ -f "/etc/profile.d/bash_ps.sh" ]; then
+  echo 'if [ "$PS1" ]; then' | sudo tee -a /etc/profile.d/bash_ps.sh &>/dev/null
+  echo '  PS1="\[\e[m\][\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]]\[\e[0;31m\](\$?)\[\e[1;0m\]\\$ \[\e[m\]"' | sudo tee -a /etc/profile.d/bash_ps.sh &>/dev/null
+  echo 'fi' | sudo tee -a /etc/profile.d/bash_ps.sh &>/dev/null
+fi
+
+# updrade startup preformance
+sudo systemctl disable NetworkManager-wait-online.service
+
+
+# install ufw (firewall)
+sudo dnf -y install ufw
+sudo dnf apply-live
+sudo systemctl disable firewalld
+sudo systemctl enable ufw --now
+sudo ufw delete allow SSH
+sudo ufw delete allow to 244.0.0.251 app mDNS
+sudo ufw delete allow to ff02::fb app mDNS
+
+if [ "$ServerMode" = "y" ]; then
+  sudo ufw limit 22/tcp
+  sudo ufw allow 80/tcp
+  sudo ufw allow 443/tcp
+fi
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+sudo ufw enable
+
+
+# add rpmfusion repos
+sudo dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf -y install fedora-workstation-repositories
+sudo fedora-third-party enable
+sudo fedora-third-party refresh
+sudo dnf -y groupupdate core
+sudo dnf -y config-manager --set-enabled google-chrome
+
+# install media codecs
+sudo dnf install -y --skip-broken @multimedia
+sudo dnf -y groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin --skip-broken
+sudo dnf -y groupupdate sound-and-video
+sudo dnf -y install ffmpeg
+
+# add flatpak
+sudo dnf -y install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak update -y --noninteractive
+
+# install snap
+sudo dnf -y install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo systemctl enable snapd --now
+sudo snap refresh #fix: not seeded yet will trigger and fix itself for the next command
+sudo snap install core
+sudo snap refresh core
+# sudo snap install snap-store
+sudo snap refresh
+
+if ! [ "$ServerMode" = "y" ]; then
+  bash "./bin/scripts/desktop.sh"
+  bash "./bin/scripts/apps.sh"
+fi
