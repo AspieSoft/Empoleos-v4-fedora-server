@@ -82,7 +82,17 @@ sudo snap refresh core
 # sudo snap install snap-store
 sudo snap refresh
 
+
+# run install scripts
+
+bash "./bin/scripts/langs.sh"
+
+bash "./bin/scripts/security.sh"
+
 if ! [ "$ServerMode" = "y" ]; then
   bash "./bin/scripts/desktop.sh"
   bash "./bin/scripts/apps.sh"
+
+  #todo: make optional
+  bash "./bin/scripts/wine.sh"
 fi
