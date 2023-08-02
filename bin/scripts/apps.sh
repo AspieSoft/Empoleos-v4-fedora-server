@@ -22,9 +22,27 @@ sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
 sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
 
+
 #todo: choose a text editor
 sudo flatpak -y install flathub org.gnome.TextEditor
 sudo flatpak -y install flathub org.xfce.mousepad
+
+#todo: choose a video player
+sudo dnf -y install celluloid
+sudo flatpak -y install flathub org.gnome.Totem
+
+#todo: find a goot audio player and image preview app
+
+# install common tools
+sudo flatpak -y install flathub org.blender.Blender
+sudo flatpak -y install flathub org.gimp.GIMP
+sudo dnf -y install pinta
+sudo flatpak -y install flathub com.github.unrud.VideoDownloader
+sudo flatpak -y install flathub org.audacityteam.Audacity
+sudo dnf -y install nm-connection-editor
+sudo flatpak -y install flathub com.obsproject.Studio
+sudo flatpak -y install flathub org.shotcut.Shotcut
+
 
 # install steam
 sudo dnf -y module disable nodejs
