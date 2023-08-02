@@ -22,6 +22,10 @@ sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
 sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
 
+#todo: choose a text editor
+sudo flatpak -y install flathub org.gnome.TextEditor
+sudo flatpak -y install flathub org.xfce.mousepad
+
 # install steam
 sudo dnf -y module disable nodejs
 sudo dnf -y install steam
