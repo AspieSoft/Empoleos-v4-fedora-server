@@ -19,7 +19,8 @@ sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
 sudo flatpak -y install flathub org.gnome.Extensions
 sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
-sudo dnf-y install gparted
+sudo dnf -y install gparted
+sudo dnf -y install gnome-boxes
 
 # install steam
 sudo dnf -y module disable nodejs
@@ -42,3 +43,5 @@ fi
 # may add seperate file for developer extras (may also include subfolder for different types of extras)
 
 # may consider using snap for vscode (even in fedora)
+
+#todo: remember to merge over "shortcuts.sh" and "theme.sh" from Empoleos (v1)
