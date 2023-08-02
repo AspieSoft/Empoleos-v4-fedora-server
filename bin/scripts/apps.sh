@@ -10,7 +10,7 @@ if test -d "$rDir/usr/share/applications"; then
   sudo chattr +i "/usr/share/applications/nemo.desktop" # prevent updates from changing this file
 fi
 
-#todo: install common apps for viewing in=mages, text, etc.
+#todo: install common apps for viewing images, videos, text, etc.
 
 sudo dnf -y install chromium
 
