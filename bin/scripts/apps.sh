@@ -53,6 +53,10 @@ sudo dnf -y install google-chrome-stable
 # sudo dnf -y install chromium
 # sudo dnf -y install firefox
 
+#todo: find alternative webcam app with better quality (OBS studio can also handle webcams with much better quality)
+# install webcam app
+# sudo flatpak  -y install flathub org.gnome.Snapshot # may be under development and so far bad quality on my laptop
+
 
 # install common tools
 sudo flatpak -y install flathub org.blender.Blender
@@ -65,6 +69,20 @@ sudo flatpak -y install flathub com.obsproject.Studio
 sudo flatpak -y install flathub org.shotcut.Shotcut
 
 # install other important apps
+sudo dnf -y install gnome-system-monitor
+sudo dnf -y install gnome-characters
+sudo dnf -y install gnome-calculator
+sudo dnf -y install gnome-clocks
+sudo dnf -y install gnome-connections
+sudo dnf -y install gnome-contacts
+sudo dnf -y install evince # document viewer
+sudo dnf -y install simple-scan # document scanner
+sudo dnf -y install gnome-font-viewer
+sudo dnf -y install gnome-logs
+sudo dnf -y install gnome-screenshot
+
+sudo dnf -y install gnome-maps
+sudo dnf -y install gnome-weather
 
 
 
