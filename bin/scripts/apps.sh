@@ -24,16 +24,29 @@ sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
 
 
-#todo: choose a text editor
+# install text editor
 sudo dnf -y install gnome-text-editor
-# sudo flatpak -y install flathub org.gnome.TextEditor
-# sudo flatpak -y install flathub org.xfce.mousepad
+# sudo flatpak -y install flathub org.xfce.mousepad # no syntax highlighting
 
-#todo: choose a video player
+# install video player
 sudo dnf -y install celluloid
-sudo flatpak -y install flathub org.gnome.Totem
+# sudo flatpak -y install flathub org.gnome.Totem # celluloid was just awesome
 
-#todo: find a good audio player and image preview app
+# install music player
+sudo dnf -y install rhythmbox # may be able to add an extension
+# plugin did not seem to make any difference
+# dnf copr enable mochaa/rhythmbox-alternative-toolbar
+# sudo dnf -y install rhythmbox-alternative-toolbar
+
+# install photo viewer
+sudo dnf -y install shotwell
+# sudo dnf -y install gnome-photos # shotwell can open webp files
+# sudo dnf -y install gpicview # crashes in gnome
+# sudo dnf -y install gwenview # looks a bit outdated
+# sudo dnf -y install eog # no different than gnome
+
+# install calendar
+sudo dnf install gnome-calendar
 
 # install common tools
 sudo flatpak -y install flathub org.blender.Blender
