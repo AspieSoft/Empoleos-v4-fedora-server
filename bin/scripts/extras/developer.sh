@@ -14,7 +14,12 @@ sudo dnf -y check-update
 sudo dnf -y install code
 
 # install other browsers
-#todo: detect current browser option (and avoid installing the flatpak version of it)
-sudo flatpak -y install flathub org.chromium.Chromium
-sudo flatpak -y install flathub org.mozilla.firefox
+if [ "$(which "chromium" 2>/dev/null)" = "" -a "$(which "chromium-browser" 2>/dev/null)" ]; then
+  sudo flatpak -y install flathub org.chromium.Chromium
+fi
+
+if [ "$(which "firefox" 2>/dev/null)" = "" ]; then
+  sudo flatpak -y install flathub org.mozilla.firefox
+fi
+
 sudo flatpak -y install flathub org.gnome.Epiphany

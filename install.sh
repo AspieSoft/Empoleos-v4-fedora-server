@@ -3,6 +3,8 @@
 cd $(dirname "$0")
 dir="$PWD"
 
+#todo: verify checksums for script files based on github repo
+
 if [ "$1" = "--server" -o "$1" = "-s" ]; then
   ServerMode="y"
 fi
@@ -95,12 +97,14 @@ if ! [ "$ServerMode" = "y" ]; then
   bash "./bin/scripts/desktop.sh"
   bash "./bin/scripts/apps.sh"
 
+  # install optional
   #todo: make optional
   bash "./bin/scripts/wine.sh"
   bash "./bin/scripts/extras/developer.sh"
   bash "./bin/scripts/extras/office.sh"
 
-  #todo: remember to merge over "theme.sh" from Empoleos (v1)
+  # install theme
+  bash "./bin/scripts/theme.sh"
 fi
 
 

@@ -11,8 +11,6 @@ if test -d "$rDir/usr/share/applications"; then
   git clone https://github.com/AspieSoft/linux-nemo-fix.git && ./linux-nemo-fix/install.sh
 fi
 
-#todo: install common apps for viewing images, videos, text, etc.
-
 sudo flatpak -y install flathub com.github.tchx84.Flatseal
 sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
@@ -107,6 +105,3 @@ sudo chmod -R 700 "/games/$USER"
 sudo mkdir "/games/$USER/Steam"
 sudo mv "$HOME/.local/share/Steam/steamapps" "/games/$USER/Steam/steamapps"
 sudo ln -s "/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
-
-#todo: put other less common apps in an optional "extras.sh" file
-# may add seperate file for developer extras (may also include subfolder for different types of extras)
