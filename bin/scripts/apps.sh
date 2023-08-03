@@ -20,6 +20,7 @@ sudo flatpak -y install flathub org.gnome.Extensions
 sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
 sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
+sudo flatpak -y install flathub org.fedoraproject.MediaWriter
 
 
 # install text editor
@@ -52,6 +53,7 @@ sudo dnf -y install google-chrome-stable
 # sudo dnf -y install chromium
 # sudo dnf -y install firefox
 
+
 # install common tools
 sudo flatpak -y install flathub org.blender.Blender
 sudo flatpak -y install flathub org.gimp.GIMP
@@ -63,6 +65,7 @@ sudo flatpak -y install flathub com.obsproject.Studio
 sudo flatpak -y install flathub org.shotcut.Shotcut
 
 # install other important apps
+
 
 
 # install steam
