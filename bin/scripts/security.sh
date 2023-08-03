@@ -81,8 +81,7 @@ if ! [ -d "/etc/aspiesoft-clamav-scanner" ]; then
   sudo cp -f ./bin/assets/aspiesoft-clamav-scanner/start.sh /etc/aspiesoft-clamav-scanner
   sudo cp -f ./bin/assets/aspiesoft-clamav-scanner/aspiesoft-clamav-download-scanner.service "/etc/systemd/system"
   sudo systemctl daemon-reload
-  sudo systemctl enable aspiesoft-clamav-download-scanner.service
-  sudo systemctl start aspiesoft-clamav-download-scanner.service
+  sudo systemctl enable aspiesoft-clamav-download-scanner.service --now
 fi
 
 
