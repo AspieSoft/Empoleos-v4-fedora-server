@@ -32,7 +32,7 @@ sudo flatpak -y install flathub org.xfce.mousepad
 sudo dnf -y install celluloid
 sudo flatpak -y install flathub org.gnome.Totem
 
-#todo: find a goot audio player and image preview app
+#todo: find a good audio player and image preview app
 
 # install common tools
 sudo flatpak -y install flathub org.blender.Blender
