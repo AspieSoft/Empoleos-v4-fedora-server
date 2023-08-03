@@ -60,13 +60,13 @@ done
 sudo nice -n 15 clamscan -r --bell --move="/VirusScan/quarantine" --exclude-dir="/VirusScan/quarantine" "$PWD/bin/assets"
 
 if [ "$ServerMode" = "y" ]; then
-  localUpdateDir="bin/server/updates"
-  cd bin/server/updates
+  localUpdateDir="bin/updates/server"
+  cd bin/updates/server
   readarray -d '' fileList < <(printf '%s\0' *.sh | sort -zV)
   cd ../../../
 else
-  localUpdateDir="bin/updates"
-  cd bin/updates
+  localUpdateDir="bin/updates/client"
+  cd bin/updates/client
   readarray -d '' fileList < <(printf '%s\0' *.sh | sort -zV)
   cd ../../
 fi
