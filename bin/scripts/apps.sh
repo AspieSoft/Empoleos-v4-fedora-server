@@ -13,8 +13,6 @@ fi
 
 #todo: install common apps for viewing images, videos, text, etc.
 
-sudo dnf -y install chromium
-
 sudo flatpak -y install flathub com.github.tchx84.Flatseal
 sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
@@ -28,16 +26,6 @@ sudo dnf -y install gnome-boxes
 sudo dnf -y install gnome-text-editor
 # sudo flatpak -y install flathub org.xfce.mousepad # no syntax highlighting
 
-# install video player
-sudo dnf -y install celluloid
-# sudo flatpak -y install flathub org.gnome.Totem # celluloid was just awesome
-
-# install music player
-sudo dnf -y install rhythmbox # may be able to add an extension
-# plugin did not seem to make any difference
-# dnf copr enable mochaa/rhythmbox-alternative-toolbar
-# sudo dnf -y install rhythmbox-alternative-toolbar
-
 # install photo viewer
 sudo dnf -y install shotwell
 # sudo dnf -y install gnome-photos # shotwell can open webp files
@@ -45,8 +33,24 @@ sudo dnf -y install shotwell
 # sudo dnf -y install gwenview # looks a bit outdated
 # sudo dnf -y install eog # no different than gnome
 
+# install music player
+sudo dnf -y install rhythmbox # may be able to add an extension
+# plugin did not seem to make any difference
+# dnf copr enable mochaa/rhythmbox-alternative-toolbar
+# sudo dnf -y install rhythmbox-alternative-toolbar
+
+# install video player
+sudo dnf -y install celluloid
+# sudo flatpak -y install flathub org.gnome.Totem # celluloid was just awesome
+
 # install calendar
 sudo dnf install gnome-calendar
+
+# install browser
+#todo: add option of browser choice
+sudo dnf -y install google-chrome-stable
+# sudo dnf -y install chromium
+# sudo dnf -y install firefox
 
 # install common tools
 sudo flatpak -y install flathub org.blender.Blender
@@ -57,6 +61,8 @@ sudo flatpak -y install flathub org.audacityteam.Audacity
 sudo dnf -y install nm-connection-editor
 sudo flatpak -y install flathub com.obsproject.Studio
 sudo flatpak -y install flathub org.shotcut.Shotcut
+
+# install other important apps
 
 
 # install steam
@@ -74,11 +80,12 @@ fi
 
 #todo: will need to add a script to run when new users are created, to automatically create a user specific steam folder in the "/games" directory
 # may use symlinks to make steam games always use "/games" folder by default
-
+sudo mkdir "/games/$USER"
+sudo chown "$USER:$USER" "/games/$USER"
+sudo chmod -R 700 "/games/$USER"
+sudo mkdir "/games/$USER/Steam"
+sudo mv "$HOME/.local/share/Steam/steamapps" "/games/$USER/Steam/steamapps"
+sudo ln -s "/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
 
 #todo: put other less common apps in an optional "extras.sh" file
 # may add seperate file for developer extras (may also include subfolder for different types of extras)
-
-# may consider using snap for vscode (even in fedora)
-
-#todo: remember to merge over "shortcuts.sh" and "theme.sh" from Empoleos (v1)

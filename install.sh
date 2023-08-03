@@ -84,15 +84,58 @@ sudo snap refresh
 
 
 # run install scripts
-
 bash "./bin/scripts/langs.sh"
-
+bash "./bin/scripts/preformance.sh"
 bash "./bin/scripts/security.sh"
+bash "./bin/scripts/fix.sh"
+bash "./bin/scripts/shortcuts.sh"
 
+# run non server install scripts
 if ! [ "$ServerMode" = "y" ]; then
   bash "./bin/scripts/desktop.sh"
   bash "./bin/scripts/apps.sh"
 
   #todo: make optional
   bash "./bin/scripts/wine.sh"
+  bash "./bin/scripts/extras/developer.sh"
+  bash "./bin/scripts/extras/office.sh"
+
+  #todo: remember to merge over "theme.sh" from Empoleos (v1)
+fi
+
+
+# install auto updates
+if [ "$ServerMode" = "y" ]; then
+  sudo sed -r -i 's/^#ServerMode=$/ServerMode=/m' "$dir/bin/apps/empoleos/update.sh"
+fi
+sudo cp -rf "./bin/apps/empoleos" "/etc"
+sudo rm -f "/etc/empoleos/empoleos.service"
+sudo cp -f "./bin/apps/empoleos/empoleos.service" "/etc/systemd/system"
+gitVer="$(curl --silent 'https://api.github.com/repos/AspieSoft/Empoleos/releases/latest' | grep '\"tag_name\":' | sed -E 's/.*\"([^\"]+)\".*/\1/')"
+echo "$gitVer" | sudo tee "/etc/empoleos/version.txt"
+
+sudo systemctl daemon-reload
+sudo systemctl enable empoleos.service --now
+
+
+# cleanup
+cd "$dir"
+
+if [[ "$PWD" =~ empoleos/?$ ]]; then
+  rm -rf "$PWD"
+fi
+
+sudo dnf clean all
+sudo dnf -y update
+
+echo "Install Finished!"
+
+# restart gnome
+if ! [ "$ServerMode" = "y" ]; then
+  echo
+  echo "Ready To Restart!"
+  echo
+  read -n1 -p "Press any key to continue..." input ; echo >&2
+
+  sudo systemctl reboot
 fi

@@ -1,0 +1,8 @@
+[Unit]
+Description=Empoleos Auto Updates
+
+[Service]
+ExecStart=/bin/bash /etc/empoleos/init.sh
+
+[Install]
+WantedBy=network.target
