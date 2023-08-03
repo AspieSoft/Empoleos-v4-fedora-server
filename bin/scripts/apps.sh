@@ -25,8 +25,9 @@ sudo dnf -y install gnome-boxes
 
 
 #todo: choose a text editor
-sudo flatpak -y install flathub org.gnome.TextEditor
-sudo flatpak -y install flathub org.xfce.mousepad
+sudo dnf -y install gnome-text-editor
+# sudo flatpak -y install flathub org.gnome.TextEditor
+# sudo flatpak -y install flathub org.xfce.mousepad
 
 #todo: choose a video player
 sudo dnf -y install celluloid
