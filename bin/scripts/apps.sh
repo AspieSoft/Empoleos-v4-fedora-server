@@ -100,15 +100,16 @@ fi
 
 #todo: will need to add a script to run when new users are created, to automatically create a user specific steam folder in the "/games" directory
 # may use symlinks to make steam games always use "/games" folder by default
+
+# ensure root games directory exists
 if ! test -d "/games"; then
   sudo mkdir "/games"
 fi
 
+# add games folder for user
 if ! test -d "$HOME/.local/share/Steam/steamapps"; then
   sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
 fi
-
-# add games folder for user
 sudo mkdir "/games/$USER"
 sudo chown "$USER:$USER" "/games/$USER"
 sudo chmod -R 700 "/games/$USER"
