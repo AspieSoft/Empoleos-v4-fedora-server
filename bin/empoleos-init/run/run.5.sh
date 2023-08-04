@@ -14,3 +14,10 @@ echo "$gitVer" | sudo tee "/etc/empoleos/version.txt"
 
 sudo systemctl daemon-reload
 sudo systemctl enable empoleos.service --now
+
+
+# wait until end to enable gdm
+if ! [ "$ServerMode" = "y" ]; then
+  sudo systemctl set-default graphical.target
+  sudo systemctl enable gdm
+fi

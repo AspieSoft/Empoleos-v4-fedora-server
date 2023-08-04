@@ -24,5 +24,6 @@ sudo dnf -y install plasma-framework
 sudo sed -r -i 's/^#WaylandEnable=(.*)$/WaylandEnable=true/m' "/etc/gdm/custom.conf"
 
 # enable gdm
-sudo systemctl set-default graphical.target
-sudo systemctl enable gdm
+#todo: may wait until end to run this (/bin/empoleos-init/run/run.5.sh)
+# sudo systemctl set-default graphical.target
+# sudo systemctl enable gdm
