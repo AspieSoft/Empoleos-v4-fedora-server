@@ -3,6 +3,8 @@
 cd $(dirname "$0")
 dir="$PWD"
 
+#ServerMode="y"
+
 
 echo "cloud backups are not yet available. maybe this feature will be available in the future..."
 exit 1

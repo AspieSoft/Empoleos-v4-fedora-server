@@ -106,10 +106,41 @@ sudo snap refresh core
 # sudo snap install snap-store
 sudo snap refresh
 
+# install theme files
+sudo tar -xvzf ./bin/assets/theme/themes.tar.gz -C /usr/share/themes
+sudo tar -xvzf ./bin/assets/theme/icons.tar.gz -C /usr/share/icons
+sudo tar -xvzf ./bin/assets/theme/sounds.tar.gz -C /usr/share/sounds
+sudo tar -xvzf ./bin/assets/theme/backgrounds.tar.gz -C /usr/share/backgrounds
+
+# install continued installation service
+if [ "$ServerMode" = "y" ]; then
+  sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "$dir/bin/empoleos-init/run.sh"
+fi
+sudo cp -rf "./bin/empoleos-init" "/etc"
+sudo rm -f "/etc/empoleos-init/empoleos-init.service"
+sudo mkdir "/etc/empoleos-init/bin"
+sudo cp -rf "./bin/scripts" "/etc/empoleos-init/bin"
+sudo cp -rf "./bin/assets" "/etc/empoleos-init/bin"
+sudo cp -f "./bin/empoleos-init/empoleos-init.service" "/etc/systemd/system"
+sudo systemctl daemon-reload
+sudo systemctl enable empoleos.service
+
+# cleanup
+cleanup
+
+cd "$dir"
+if [[ "$PWD" =~ empoleos/?$ ]]; then
+  rm -rf "$PWD"
+fi
+
 sudo dnf clean all
 sudo dnf -y autoremove
 sudo dnf -y update
 sudo dnf -y distro-sync
+
+# reboot
+sudo systemctl reboot
+exit #todo: move below scripts to init service
 
 
 # run install scripts
@@ -139,11 +170,12 @@ fi
 
 # install auto updates
 if [ "$ServerMode" = "y" ]; then
-  sudo sed -r -i 's/^#ServerMode=$/ServerMode=/m' "$dir/bin/apps/empoleos/update.sh"
+  sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "$dir/bin/assets/empoleos/update.sh"
+  sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "$dir/bin/assets/empoleos/backup.sh"
 fi
-sudo cp -rf "./bin/apps/empoleos" "/etc"
+sudo cp -rf "./bin/assets/empoleos" "/etc"
 sudo rm -f "/etc/empoleos/empoleos.service"
-sudo cp -f "./bin/apps/empoleos/empoleos.service" "/etc/systemd/system"
+sudo cp -f "./bin/assets/empoleos/empoleos.service" "/etc/systemd/system"
 gitVer="$(curl --silent 'https://api.github.com/repos/AspieSoft/Empoleos/releases/latest' | grep '\"tag_name\":' | sed -E 's/.*\"([^\"]+)\".*/\1/')"
 echo "$gitVer" | sudo tee "/etc/empoleos/version.txt"
 
