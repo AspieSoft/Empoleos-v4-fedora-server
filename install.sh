@@ -137,6 +137,7 @@ sudo tar -xvzf ./bin/assets/theme/backgrounds.tar.gz -C /usr/share/backgrounds
 if [ "$ServerMode" = "y" ]; then
   sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "$dir/bin/empoleos-init/run.sh"
 fi
+sudo sed -r -i "s/\\\$USER/$USER/g" "$dir/bin/empoleos-init/empoleos-init.service"
 sudo cp -rf "./bin/empoleos-init" "/etc"
 sudo rm -f "/etc/empoleos-init/empoleos-init.service"
 sudo mkdir "/etc/empoleos-init/bin"
