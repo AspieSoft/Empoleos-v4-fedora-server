@@ -5,4 +5,4 @@ Description=AspieSoft ClamAV Download Scanner
 ExecStart=/bin/bash /etc/aspiesoft-clamav-scanner/start.sh
 
 [Install]
-WantedBy=network.target
+WantedBy=multi-user.target
