@@ -82,6 +82,8 @@ sudo snap refresh core
 # sudo snap install snap-store
 sudo snap refresh
 
+sudo dnf clean all
+
 
 # run install scripts
 bash "./bin/scripts/langs.sh"
