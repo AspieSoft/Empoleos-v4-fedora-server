@@ -5,7 +5,7 @@ dir="$PWD"
 
 #ServerMode=y
 
-$stepCount="5"
+stepCount="5"
 
 while [ "$(ping -c1 www.google.com 2>/dev/null)" == "" ]; do
   echo "waiting for wifi..."

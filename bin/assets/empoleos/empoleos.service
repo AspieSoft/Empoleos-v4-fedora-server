@@ -3,6 +3,7 @@ Description=Empoleos Auto Updates
 
 [Service]
 ExecStart=/bin/bash /etc/empoleos/init.sh
+Nice=15
 
 [Install]
 WantedBy=network.target

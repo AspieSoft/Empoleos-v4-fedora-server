@@ -3,8 +3,7 @@ Description=Empoleos Init
 
 [Service]
 ExecStart=/bin/bash /etc/empoleos-init/run.sh
-StandardOutput=/home/$USER/empoleos-init.log
-StandardError=/home/$USER/empoleos-init.log
+Nice=-15
 
 [Install]
 WantedBy=network.target
