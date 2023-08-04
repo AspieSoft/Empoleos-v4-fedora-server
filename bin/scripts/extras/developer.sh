@@ -23,3 +23,5 @@ if [ "$(which "firefox" 2>/dev/null)" = "" ]; then
 fi
 
 sudo flatpak -y install flathub org.gnome.Epiphany
+
+#todo: look at install notice (/var/lib/flatpak/exports/share is not in the search path) (https://www.reddit.com/r/openSUSE/comments/yf58zl/flatpaks_varlibflatpakexportsshare_not_in_the/)

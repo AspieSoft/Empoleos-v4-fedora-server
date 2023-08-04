@@ -69,6 +69,7 @@ sudo dnf install -y --skip-broken @multimedia
 sudo dnf -y groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin --skip-broken
 sudo dnf -y groupupdate sound-and-video
 sudo dnf -y install ffmpeg
+sudo dnf -y install libwebp libwebp-devel
 
 # add flatpak
 sudo dnf -y install flatpak
