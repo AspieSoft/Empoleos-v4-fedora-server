@@ -146,6 +146,14 @@ sudo cp -f "./bin/empoleos-init/empoleos-init.service" "/etc/systemd/system"
 sudo systemctl daemon-reload
 sudo systemctl enable empoleos-init.service
 
+# enable temp auto login
+sudo mkdir "/etc/systemd/system/getty@tty1.service.d"
+echo "[Service]" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "ExecStart=" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "ExecStart=-/sbin/agetty --noissue --autologin admin %I $TERM" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "Type=idle" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "EOT" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+
 # cleanup
 cleanup
 

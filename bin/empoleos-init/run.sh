@@ -37,8 +37,13 @@ if [ -f "$dir/run/run.$runStep.sh" ]; then
   echo "continuing install! $runStep/$stepCount"
   bash "$dir/run/run.$runStep.sh" "$ServerMode"
 else
+  # disable temp auto login
+  sudo rm -rf "/etc/systemd/system/getty@tty1.service.d"
+
+  # remove install service
   sudo systemctl disable empoleos-init.service
   sudo rm -rf /etc/empoleos-init
+
   echo "Install Finished!"
   exit
 fi
