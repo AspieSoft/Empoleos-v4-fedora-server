@@ -109,5 +109,7 @@ bash "./bin/scripts/fix-keyboard-shortcuts.sh"
 
 
 # copy extension settings for new users
+sudo mkdir -p "/etc/skel/.local/share/gnome-shell/extensions"
+sudo mkdir -p "/etc/skel/.config"
 sudo cp -rf "$HOME/.local/share/gnome-shell/extensions" "/etc/skel/.local/share/gnome-shell/extensions"
-sudo cp -rf "$HOME/.config/burn-my-windows" "/etc/skel/.config/burn-my-windows"
+sudo cp -rf "$HOME/.config/burn-my-windows" "/etc/skel/.config"

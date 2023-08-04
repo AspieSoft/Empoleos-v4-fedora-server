@@ -103,6 +103,7 @@ if ! test -d "/games"; then
   sudo mkdir "/games"
 fi
 
+# add games folder for user
 sudo mkdir "/games/$USER"
 sudo chown "$USER:$USER" "/games/$USER"
 sudo chmod -R 700 "/games/$USER"
