@@ -9,7 +9,7 @@
 First you will need to install [Fedora Server](https://fedoraproject.org/server/download/) or another fedora cli based on dnf.
 Fedora Server is used for both the Desktop GUI and Server CLI.
 
-After booting into the server cli, run the following script.
+After booting into the server cli, run one of the following scripts.
 
 ### For Desktop GUI
 
