@@ -86,7 +86,6 @@ sudo dnf -y install gnome-weather
 sudo dnf -y install gnome-power-manager
 
 
-
 # install steam
 sudo dnf -y module disable nodejs
 sudo dnf -y install steam
