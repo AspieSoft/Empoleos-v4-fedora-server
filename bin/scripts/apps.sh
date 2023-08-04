@@ -83,7 +83,7 @@ sudo dnf -y install gnome-screenshot
 sudo dnf -y install gnome-maps
 sudo dnf -y install gnome-weather
 
-sudo dnf -y install gnome-power-manager power-profiles-daemon
+sudo dnf -y install gnome-power-manager
 
 
 

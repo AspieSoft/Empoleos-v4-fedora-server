@@ -124,6 +124,9 @@ sudo dnf -y autoremove
 sudo dnf -y update
 sudo dnf -y distro-sync
 
+# optimize preformance
+bash "./bin/scripts/preformance.sh"
+
 # install theme files
 sudo tar -xvzf ./bin/assets/theme/themes.tar.gz -C /usr/share/themes
 sudo tar -xvzf ./bin/assets/theme/icons.tar.gz -C /usr/share/icons
