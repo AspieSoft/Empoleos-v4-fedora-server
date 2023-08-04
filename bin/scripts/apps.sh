@@ -43,7 +43,7 @@ sudo dnf -y install celluloid
 # sudo flatpak -y install flathub org.gnome.Totem # celluloid was just awesome
 
 # install calendar
-sudo dnf install gnome-calendar
+sudo dnf -y install gnome-calendar
 
 # install browser
 #todo: add option of browser choice
