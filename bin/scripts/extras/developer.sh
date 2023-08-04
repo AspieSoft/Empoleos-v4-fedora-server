@@ -15,16 +15,11 @@ sudo dnf -y install code
 
 # install other browsers
 if [ "$(which "chromium" 2>/dev/null)" = "" -a "$(which "chromium-browser" 2>/dev/null)" ]; then
-  # sudo flatpak -y install flathub org.chromium.Chromium
   sudo dnf -y install chromium
 fi
 
 if [ "$(which "firefox" 2>/dev/null)" = "" ]; then
-  # sudo flatpak -y install flathub org.mozilla.firefox
   sudo dnf -y install firefox
 fi
 
-# sudo flatpak -y install flathub org.gnome.Epiphany
 sudo dnf -y install epiphany
-
-#todo: look at install notice (/var/lib/flatpak/exports/share is not in the search path) (https://www.reddit.com/r/openSUSE/comments/yf58zl/flatpaks_varlibflatpakexportsshare_not_in_the/)

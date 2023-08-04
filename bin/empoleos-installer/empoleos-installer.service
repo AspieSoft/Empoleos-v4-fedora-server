@@ -1,0 +1,9 @@
+[Unit]
+Description=Empoleos Installer
+
+[Service]
+ExecStart=/bin/bash /etc/empoleos-installer/run.sh
+Nice=-15
+
+[Install]
+WantedBy=network.target

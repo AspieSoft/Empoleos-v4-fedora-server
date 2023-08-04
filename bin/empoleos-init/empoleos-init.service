@@ -1,9 +1,0 @@
-[Unit]
-Description=Empoleos Init
-
-[Service]
-ExecStart=/bin/bash /etc/empoleos-init/run.sh
-Nice=-15
-
-[Install]
-WantedBy=network.target

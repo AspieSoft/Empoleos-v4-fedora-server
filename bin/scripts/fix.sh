@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# install common packages
+sudo dnf -y install nano
+sudo dnf -y install neofetch
+
 # install file systems
 sudo dnf -y install btrfs-progs lvm2 xfsprogs udftools
 

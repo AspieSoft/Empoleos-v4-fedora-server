@@ -7,7 +7,6 @@ xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 if test -d "$rDir/usr/share/applications"; then
   sudo sed -r -i 's/^OnlyShowIn=/#OnlyShowIn=/m' "/usr/share/applications/nemo.desktop"
   sudo sed -r -i 's#^inode/directory=(.*)$#inode/directory=nemo.desktop#m' "/usr/share/applications/gnome-mimeapps.list"
-  # sudo chattr +i "/usr/share/applications/nemo.desktop" # prevent updates from changing this file
   git clone https://github.com/AspieSoft/linux-nemo-fix.git && ./linux-nemo-fix/install.sh
 fi
 
@@ -15,7 +14,6 @@ sudo flatpak -y install flathub com.github.tchx84.Flatseal
 sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
 # sudo flatpak -y install flathub org.gnome.Extensions
-# sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
 sudo snap install gnome-extension-manager
 sudo dnf -y install gnome-disk-utility
 sudo dnf -y install gparted
@@ -26,14 +24,9 @@ sudo dnf -y install liveusb-creator
 
 # install text editor
 sudo dnf -y install gnome-text-editor
-# sudo flatpak -y install flathub org.xfce.mousepad # no syntax highlighting
 
 # install photo viewer
 sudo dnf -y install shotwell
-# sudo dnf -y install gnome-photos # shotwell can open webp files
-# sudo dnf -y install gpicview # crashes in gnome
-# sudo dnf -y install gwenview # looks a bit outdated
-# sudo dnf -y install eog # no different than gnome
 
 # install music player
 sudo dnf -y install rhythmbox # may be able to add an extension
@@ -43,7 +36,6 @@ sudo dnf -y install rhythmbox # may be able to add an extension
 
 # install video player
 sudo dnf -y install celluloid
-# sudo flatpak -y install flathub org.gnome.Totem # celluloid was just awesome
 
 # install calendar
 sudo dnf -y install gnome-calendar
@@ -60,19 +52,13 @@ sudo dnf -y install google-chrome-stable
 
 
 # install common tools
-# sudo flatpak -y install flathub org.blender.
 sudo dnf -y install blender
-# sudo flatpak -y install flathub org.gimp.GIMP
 sudo dnf -y install gimp
 sudo dnf -y install pinta
-# sudo flatpak -y install flathub com.github.unrud.VideoDownloader
 sudo dnf -y install video-downloader
-# sudo flatpak -y install flathub org.audacityteam.Audacity
 sudo dnf -y install audacity
 sudo dnf -y install nm-connection-editor
-# sudo flatpak -y install flathub com.obsproject.Studio
 sudo dnf -y install obs-studio
-# sudo flatpak -y install flathub org.shotcut.
 sudo dnf -y install shotcut
 
 # install other important apps

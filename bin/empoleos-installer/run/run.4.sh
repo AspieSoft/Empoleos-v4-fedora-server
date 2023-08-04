@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ServerMode="$1"
-
 # install auto updates
 if [ "$ServerMode" = "y" ]; then
   sudo sed -r -i 's/^#ServerMode=$/ServerMode=/m' "$dir/bin/apps/empoleos/update.sh"
