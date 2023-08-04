@@ -150,7 +150,7 @@ sudo systemctl enable empoleos-init.service
 sudo mkdir "/etc/systemd/system/getty@tty1.service.d"
 echo "[Service]" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
 echo "ExecStart=" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
-echo "ExecStart=-/sbin/agetty --noissue --autologin admin %I $TERM" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I \$TERM" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
 echo "Type=idle" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
 echo "EOT" | sudo tee -a "/etc/systemd/system/getty@tty1.service.d/override.conf"
 
