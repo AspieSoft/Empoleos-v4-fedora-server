@@ -16,3 +16,6 @@ gsettings set org.gnome.mutter attach-modal-dialogs "false"
 gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
 
 gsettings set org.gnome.TextEditor restore-session "false"
+
+#todo: set terminal to use custom font
+# gsettings set "org.gnome.terminal.legacy.profiles.$profile" use-system-font "true"
