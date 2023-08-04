@@ -14,14 +14,12 @@ fi
 sudo flatpak -y install flathub com.github.tchx84.Flatseal
 sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
-# sudo flatpak -y install flathub org.gnome.Extensions
-# sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
-sudo snap install gnome-extension-manager
+sudo flatpak -y install flathub org.gnome.Extensions
+sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
 sudo dnf -y install gnome-disk-utility
 sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
-# sudo flatpak -y install flathub org.fedoraproject.MediaWriter
-sudo dnf -y install liveusb-creator
+sudo flatpak -y install flathub org.fedoraproject.MediaWriter
 
 
 # install text editor
@@ -60,20 +58,14 @@ sudo dnf -y install google-chrome-stable
 
 
 # install common tools
-# sudo flatpak -y install flathub org.blender.
-sudo dnf -y install blender
-# sudo flatpak -y install flathub org.gimp.GIMP
-sudo dnf -y install gimp
+sudo flatpak -y install flathub org.blender.Blender
+sudo flatpak -y install flathub org.gimp.GIMP
 sudo dnf -y install pinta
-# sudo flatpak -y install flathub com.github.unrud.VideoDownloader
-sudo dnf -y install video-downloader
-# sudo flatpak -y install flathub org.audacityteam.Audacity
-sudo dnf -y install audacity
+sudo flatpak -y install flathub com.github.unrud.VideoDownloader
+sudo flatpak -y install flathub org.audacityteam.Audacity
 sudo dnf -y install nm-connection-editor
-# sudo flatpak -y install flathub com.obsproject.Studio
-sudo dnf -y install obs-studio
-# sudo flatpak -y install flathub org.shotcut.
-sudo dnf -y install shotcut
+sudo flatpak -y install flathub com.obsproject.Studio
+sudo flatpak -y install flathub org.shotcut.Shotcut
 
 # install other important apps
 sudo dnf -y install gnome-system-monitor
