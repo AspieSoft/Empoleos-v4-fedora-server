@@ -4,9 +4,9 @@
 if ! test -d "$HOME/.local/share/Steam/steamapps"; then
   sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
 fi
-sudo mkdir "/games/$1"
-sudo chown "$1:$1" "/games/$1"
-sudo chmod -R 700 "/games/$1"
-mkdir "/games/$1/Steam"
-mv "$4/.local/share/Steam/steamapps" "/games/$1/Steam/steamapps"
-ln -s "/games/$1/Steam/steamapps" "$4/.local/share/Steam/steamapps"
+sudo mkdir "/usr/games/$1"
+sudo chown "$1:$1" "/usr/games/$1"
+sudo chmod -R 700 "/usr/games/$1"
+mkdir "/usr/games/$1/Steam"
+mv "$4/.local/share/Steam/steamapps" "/usr/games/$1/Steam/steamapps"
+ln -s "/usr/games/$1/Steam/steamapps" "$4/.local/share/Steam/steamapps"

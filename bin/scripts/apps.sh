@@ -104,19 +104,19 @@ fi
 # may use symlinks to make steam games always use "/games" folder by default
 
 # ensure root games directory exists
-if ! test -d "/games"; then
-  sudo mkdir "/games"
+if ! test -d "/usr/games"; then
+  sudo mkdir "/usr/games"
 fi
 
 # add games folder for user
 if ! test -d "$HOME/.local/share/Steam/steamapps"; then
   sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
 fi
-sudo mkdir "/games/$USER"
-sudo chown "$USER:$USER" "/games/$USER"
-sudo chmod -R 700 "/games/$USER"
-mkdir "/games/$USER/Steam"
-mv "$HOME/.local/share/Steam/steamapps" "/games/$USER/Steam/steamapps"
-ln -s "/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
+sudo mkdir "/usr/games/$USER"
+sudo chown "$USER:$USER" "/usr/games/$USER"
+sudo chmod -R 700 "/usr/games/$USER"
+mkdir "/usr/games/$USER/Steam"
+mv "$HOME/.local/share/Steam/steamapps" "/usr/games/$USER/Steam/steamapps"
+ln -s "/usr/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
 
 sudo cp "./bin/assets/adduser.local" "/usr/local/sbin"
