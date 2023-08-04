@@ -86,6 +86,9 @@ sudo snap refresh core
 sudo snap refresh
 
 sudo dnf clean all
+sudo dnf -y autoremove
+sudo dnf -y update
+sudo dnf -y distro-sync
 
 
 # run install scripts
@@ -134,7 +137,9 @@ if [[ "$PWD" =~ empoleos/?$ ]]; then
 fi
 
 sudo dnf clean all
+sudo dnf -y autoremove
 sudo dnf -y update
+sudo dnf -y distro-sync
 
 echo "Install Finished!"
 
