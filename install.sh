@@ -9,6 +9,9 @@ if [ "$1" = "--server" -o "$1" = "-s" ]; then
   ServerMode="y"
 fi
 
+sudo echo
+#todo: temporairly disable password timeout
+
 sudo dnf -y update
 
 if ! grep -R "^# Added for Speed" "/etc/dnf/dnf.conf"; then
