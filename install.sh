@@ -115,7 +115,6 @@ sudo systemctl enable snapd --now
 sudo snap refresh #fix: not seeded yet will trigger and fix itself for the next command
 sudo snap install core
 sudo snap refresh core
-# sudo snap install snap-store
 sudo snap refresh
 
 # cleanup
