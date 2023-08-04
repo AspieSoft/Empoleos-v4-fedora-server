@@ -31,13 +31,14 @@ sudo dnf -y --noautoremove remove dmraid device-mapper-multipath
 sudo sed -r -i 's/^GRUB_TIMEOUT=(.*)$/GRUB_TIMEOUT=0/m' /etc/default/grub
 sudo update-grub
 
+
 # temp increace preformance if charging
 PowerThreshhold=90
 LowPowerThreshhold=20
 powerFile=$(upower -e | grep battery_)
 if [ "$powerFile" = "" -o "$(upower -i "$file" | grep 'time to empty')" = "" ]; then
-  powerprofilesctl set balanced
-  powerprofilesctl set preformance
+  sudo powerprofilesctl set balanced # fallback incase preformance mode does not exist
+  sudo powerprofilesctl set preformance
 else
   setBalanced="0"
   for file in $powerFile; do
@@ -52,11 +53,11 @@ else
   done
 
   if [ "$setBalanced" = "2" ]; then
-    powerprofilesctl set power-saver
+    sudo powerprofilesctl set power-saver
   elif [ "$setBalanced" = "1" ]; then
-    powerprofilesctl set balanced
+    sudo powerprofilesctl set balanced
   else
-    powerprofilesctl set balanced
-    powerprofilesctl set preformance
+    sudo powerprofilesctl set balanced # fallback incase preformance mode does not exist
+    sudo powerprofilesctl set preformance
   fi
 fi

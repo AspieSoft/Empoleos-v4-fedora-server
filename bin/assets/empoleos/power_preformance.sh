@@ -9,8 +9,8 @@ LowPowerThreshhold=20
 while true; do
   powerFile=$(upower -e | grep battery_)
   if [ "$powerFile" = "" -o "$(upower -i "$file" | grep 'time to empty')" = "" ]; then
-    powerprofilesctl set balanced # fallback incase preformance mode does not exist
-    powerprofilesctl set preformance
+    sudo powerprofilesctl set balanced # fallback incase preformance mode does not exist
+    sudo powerprofilesctl set preformance
   else
     setBalanced="0"
     for file in $powerFile; do
@@ -25,12 +25,12 @@ while true; do
     done
 
     if [ "$setBalanced" = "2" ]; then
-      powerprofilesctl set power-saver
+      sudo powerprofilesctl set power-saver
     elif [ "$setBalanced" = "1" ]; then
-      powerprofilesctl set balanced
+      sudo powerprofilesctl set balanced
     else
-      powerprofilesctl set balanced # fallback incase preformance mode does not exist
-      powerprofilesctl set preformance
+      sudo powerprofilesctl set balanced # fallback incase preformance mode does not exist
+      sudo powerprofilesctl set preformance
     fi
   fi
 
