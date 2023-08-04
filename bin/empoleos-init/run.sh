@@ -5,7 +5,7 @@ dir="$PWD"
 
 #ServerMode=y
 
-$stepCount="1"
+$stepCount="5"
 
 while [ "$(ping -c1 www.google.com 2>/dev/null)" == "" ]; do
   echo "waiting for wifi..."
@@ -14,7 +14,8 @@ done
 
 sleep 1
 
-runStep="0"
+
+runStep="0" #todo: change to 1 and remove run.0.sh after testing
 if [ -f "$dir/run/run.step" ]; then
   runStep="$(cat "$dir/run/run.step")"
 fi
@@ -28,6 +29,7 @@ if [ "$ServerMode" = "y" ] && [ -f "$dir/run/run.$runStep.sh" ]; then
     runStep="$((runStep+1))"
   done
 fi
+
 
 if [ -f "$dir/run/run.$runStep.sh" ]; then
   #todo: verify checksum for script before running
@@ -43,6 +45,7 @@ fi
 
 runStep="$((runStep+1))"
 echo "$runStep" | sudo tee "$dir/run/run.step"
+
 
 # cleanup
 sudo dnf clean all
