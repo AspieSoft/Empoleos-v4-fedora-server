@@ -84,12 +84,24 @@ sudo fedora-third-party refresh
 sudo dnf -y groupupdate core
 sudo dnf -y config-manager --set-enabled google-chrome
 
+# cleanup
+sudo dnf clean all
+sudo dnf -y autoremove
+sudo dnf -y update
+sudo dnf -y distro-sync
+
 # install media codecs
 sudo dnf install -y --skip-broken @multimedia
 sudo dnf -y groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin --skip-broken
 sudo dnf -y groupupdate sound-and-video
 sudo dnf -y install ffmpeg
 sudo dnf -y install libwebp libwebp-devel
+
+# cleanup
+sudo dnf clean all
+sudo dnf -y autoremove
+sudo dnf -y update
+sudo dnf -y distro-sync
 
 # add flatpak
 sudo dnf -y install flatpak
@@ -105,6 +117,12 @@ sudo snap install core
 sudo snap refresh core
 # sudo snap install snap-store
 sudo snap refresh
+
+# cleanup
+sudo dnf clean all
+sudo dnf -y autoremove
+sudo dnf -y update
+sudo dnf -y distro-sync
 
 # install theme files
 sudo tar -xvzf ./bin/assets/theme/themes.tar.gz -C /usr/share/themes
@@ -132,11 +150,6 @@ cd "$dir"
 if [[ "$PWD" =~ empoleos/?$ ]]; then
   rm -rf "$PWD"
 fi
-
-sudo dnf clean all
-sudo dnf -y autoremove
-sudo dnf -y update
-sudo dnf -y distro-sync
 
 # reboot
 sudo systemctl reboot
