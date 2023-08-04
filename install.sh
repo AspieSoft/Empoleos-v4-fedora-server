@@ -29,9 +29,6 @@ if ! [ -f "/etc/profile.d/bash_ps.sh" ]; then
   echo 'fi' | sudo tee -a /etc/profile.d/bash_ps.sh &>/dev/null
 fi
 
-# updrade startup preformance
-sudo systemctl disable NetworkManager-wait-online.service
-
 
 # install ufw (firewall)
 sudo dnf -y install ufw
