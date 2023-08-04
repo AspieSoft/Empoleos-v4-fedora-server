@@ -141,7 +141,7 @@ sudo cp -rf "./bin/scripts" "/etc/empoleos-init/bin"
 sudo cp -rf "./bin/assets" "/etc/empoleos-init/bin"
 sudo cp -f "./bin/empoleos-init/empoleos-init.service" "/etc/systemd/system"
 sudo systemctl daemon-reload
-sudo systemctl enable empoleos.service
+sudo systemctl enable empoleos-init.service
 
 # cleanup
 cleanup
