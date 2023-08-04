@@ -109,3 +109,5 @@ sudo chmod -R 700 "/games/$USER"
 mkdir "/games/$USER/Steam"
 mv "$HOME/.local/share/Steam/steamapps" "/games/$USER/Steam/steamapps"
 ln -s "/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
+
+sudo cp "./bin/assets/adduser.local" "/usr/local/sbin"

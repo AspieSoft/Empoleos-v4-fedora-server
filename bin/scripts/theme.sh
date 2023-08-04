@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#todo: merge over "theme.sh" from Empoleos (v1)
-
 # install theme files
 sudo tar -xvzf ./bin/assets/theme/themes.tar.gz -C /usr/share/themes
 sudo tar -xvzf ./bin/assets/theme/icons.tar.gz -C /usr/share/icons

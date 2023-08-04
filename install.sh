@@ -35,12 +35,12 @@ sudo systemctl disable NetworkManager-wait-online.service
 
 # install ufw (firewall)
 sudo dnf -y install ufw
-sudo dnf apply-live
 sudo systemctl disable firewalld
 sudo systemctl enable ufw --now
 sudo ufw delete allow SSH
 sudo ufw delete allow to 244.0.0.251 app mDNS
 sudo ufw delete allow to ff02::fb app mDNS
+echo -e "y\n" | sudo ufw delete 1
 
 if [ "$ServerMode" = "y" ]; then
   sudo ufw limit 22/tcp
@@ -95,6 +95,7 @@ bash "./bin/scripts/shortcuts.sh"
 # run non server install scripts
 if ! [ "$ServerMode" = "y" ]; then
   bash "./bin/scripts/desktop.sh"
+  bash "./bin/scripts/desktop-security.sh"
   bash "./bin/scripts/apps.sh"
 
   # install optional
