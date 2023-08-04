@@ -14,7 +14,7 @@ sudo dnf -y update
 if ! grep -R "^# Added for Speed" "/etc/dnf/dnf.conf"; then
   echo "# Added For Speed" | sudo tee -a /etc/dnf/dnf.conf
   #echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
-  echo "max_parallel_downloads=5" | sudo tee -a /etc/dnf/dnf.conf
+  echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf
   echo "defaultyes=True" | sudo tee -a /etc/dnf/dnf.conf
   echo "keepcache=True" | sudo tee -a /etc/dnf/dnf.conf
 fi
