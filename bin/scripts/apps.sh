@@ -104,6 +104,10 @@ if ! test -d "/games"; then
   sudo mkdir "/games"
 fi
 
+if ! test -d "$HOME/.local/share/Steam/steamapps"; then
+  sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
+fi
+
 # add games folder for user
 sudo mkdir "/games/$USER"
 sudo chown "$USER:$USER" "/games/$USER"
