@@ -15,7 +15,7 @@ done
 sleep 1
 
 
-runStep="0" #todo: change to 1 and remove run.0.sh after testing
+runStep="1"
 if [ -f "$dir/run/run.step" ]; then
   runStep="$(cat "$dir/run/run.step")"
 fi
