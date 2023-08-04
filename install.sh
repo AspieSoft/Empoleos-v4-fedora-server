@@ -10,7 +10,27 @@ if [ "$1" = "--server" -o "$1" = "-s" ]; then
 fi
 
 sudo echo
-#todo: temporairly disable password timeout
+
+
+function cleanup {
+  if ! [ "$serverMode" = "y" ]; then
+    # reset login timeout
+    sudo sed -r -i 's/^Defaults([\t ]+)(.*)env_reset(.*), (timestamp_timeout=1801,?\s*)+$/Defaults\1\2env_reset\3/m' /etc/sudoers &>/dev/null
+  fi
+
+  cd "$dir"
+}
+trap cleanup EXIT
+
+function cleanupexit {
+  cleanup
+  exit
+}
+trap cleanupexit SIGINT
+
+# extend login timeout
+sudo sed -r -i 's/^Defaults([\t ]+)(.*)env_reset(.*)$/Defaults\1\2env_reset\3, timestamp_timeout=1801/m' /etc/sudoers &>/dev/null
+
 
 sudo dnf -y update
 
@@ -112,6 +132,7 @@ if ! [ "$ServerMode" = "y" ]; then
   bash "./bin/scripts/extras/office.sh"
 
   # install theme
+  #todo: may need to run theme config scripts after a reboot
   bash "./bin/scripts/theme.sh"
 fi
 
@@ -131,8 +152,9 @@ sudo systemctl enable empoleos.service --now
 
 
 # cleanup
-cd "$dir"
+cleanup
 
+cd "$dir"
 if [[ "$PWD" =~ empoleos/?$ ]]; then
   rm -rf "$PWD"
 fi

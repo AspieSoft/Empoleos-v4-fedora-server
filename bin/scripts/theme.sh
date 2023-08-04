@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# set theme basics
+gsettings set org.gnome.desktop.interface clock-format 12h
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
 # install theme files
 sudo tar -xvzf ./bin/assets/theme/themes.tar.gz -C /usr/share/themes
 sudo tar -xvzf ./bin/assets/theme/icons.tar.gz -C /usr/share/icons
