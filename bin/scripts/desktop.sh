@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install gdm (login manager / display manager)
 sudo dnf -y install gdm
 
