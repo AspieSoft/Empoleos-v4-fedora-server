@@ -77,27 +77,27 @@ sudo dnf -y update
 sudo dnf -y distro-sync
 
 # run install scripts
-bash "$dir/bin/scripts/preformance.sh"
-bash "$dir/bin/scripts/fix.sh"
-bash "$dir/bin/scripts/langs.sh"
-bash "$dir/bin/scripts/security.sh"
-bash "$dir/bin/scripts/shortcuts.sh"
+bash "$dir/bin/scripts/preformance.sh" "$dir"
+bash "$dir/bin/scripts/fix.sh" "$dir"
+bash "$dir/bin/scripts/langs.sh" "$dir"
+bash "$dir/bin/scripts/security.sh" "$dir"
+bash "$dir/bin/scripts/shortcuts.sh" "$dir"
 
 # run non-server desktop install scripts
 if ! [ "$ServerMode" = "y" ]; then
-  bash "$dir/bin/scripts/desktop.sh"
-  bash "$dir/bin/scripts/desktop-security.sh"
+  bash "$dir/bin/scripts/desktop.sh" "$dir"
+  bash "$dir/bin/scripts/desktop-security.sh" "$dir"
 
   # install common apps
-  bash "$dir/bin/scripts/apps.sh"
+  bash "$dir/bin/scripts/apps.sh" "$dir"
 
   # install optional
   #todo: make optional
-  bash "$dir/bin/scripts/extras/wine.sh"
-  bash "$dir/bin/scripts/extras/developer.sh"
-  bash "$dir/bin/scripts/extras/office.sh"
+  bash "$dir/bin/scripts/extras/wine.sh" "$dir"
+  bash "$dir/bin/scripts/extras/developer.sh" "$dir"
+  bash "$dir/bin/scripts/extras/office.sh" "$dir"
 
   # install theme
-  bash "$dir/bin/scripts/theme/config.sh"
-  bash "$dir/bin/scripts/theme/core-extensions.sh"
+  bash "$dir/bin/scripts/theme/config.sh" "$dir"
+  bash "$dir/bin/scripts/theme/core-extensions.sh" "$dir"
 fi
