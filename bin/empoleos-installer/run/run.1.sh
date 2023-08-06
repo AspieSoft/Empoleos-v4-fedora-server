@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ServerMode="$1"
+dir="$PWD"
 
 if ! grep -R "^# Added for Speed" "/etc/dnf/dnf.conf"; then
   sudo sed -r -i 's/^best=(.*)$/best=True/m' "/etc/dnf/dnf.conf"
@@ -76,27 +77,27 @@ sudo dnf -y update
 sudo dnf -y distro-sync
 
 # run install scripts
-bash "./bin/scripts/preformance.sh"
-bash "./bin/scripts/fix.sh"
-bash "./bin/scripts/langs.sh"
-bash "./bin/scripts/security.sh"
-bash "./bin/scripts/shortcuts.sh"
+bash "$dir/bin/scripts/preformance.sh"
+bash "$dir/bin/scripts/fix.sh"
+bash "$dir/bin/scripts/langs.sh"
+bash "$dir/bin/scripts/security.sh"
+bash "$dir/bin/scripts/shortcuts.sh"
 
 # run non-server desktop install scripts
 if ! [ "$ServerMode" = "y" ]; then
-  bash "./bin/scripts/desktop.sh"
-  bash "./bin/scripts/desktop-security.sh"
+  bash "$dir/bin/scripts/desktop.sh"
+  bash "$dir/bin/scripts/desktop-security.sh"
 
   # install common apps
-  bash "./bin/scripts/apps.sh"
+  bash "$dir/bin/scripts/apps.sh"
 
   # install optional
   #todo: make optional
-  bash "./bin/scripts/extras/wine.sh"
-  bash "./bin/scripts/extras/developer.sh"
-  bash "./bin/scripts/extras/office.sh"
+  bash "$dir/bin/scripts/extras/wine.sh"
+  bash "$dir/bin/scripts/extras/developer.sh"
+  bash "$dir/bin/scripts/extras/office.sh"
 
   # install theme
-  bash "./bin/scripts/theme/config.sh"
-  bash "./bin/scripts/theme/core-extensions.sh"
+  bash "$dir/bin/scripts/theme/config.sh"
+  bash "$dir/bin/scripts/theme/core-extensions.sh"
 fi
