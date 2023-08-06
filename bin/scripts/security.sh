@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 sudo dnf -y install fail2ban
 
 if ! [ -f "/etc/fail2ban/jail.local" ]; then
@@ -78,8 +80,8 @@ if ! [ -d "/etc/aspiesoft-clamav-scanner" ]; then
   git clone https://github.com/AspieSoft/linux-clamav-download-scanner.git
   sudo cp -rf linux-clamav-download-scanner/* /etc/aspiesoft-clamav-scanner
   rm linux-clamav-download-scanner
-  sudo cp -f ./bin/assets/aspiesoft-clamav-scanner/start.sh /etc/aspiesoft-clamav-scanner
-  sudo cp -f ./bin/assets/aspiesoft-clamav-scanner/aspiesoft-clamav-download-scanner.service "/etc/systemd/system"
+  sudo cp -f "$dir/bin/assets/aspiesoft-clamav-scanner/start.sh" "/etc/aspiesoft-clamav-scanner"
+  sudo cp -f "$dir/bin/assets/aspiesoft-clamav-scanner/aspiesoft-clamav-download-scanner.service" "/etc/systemd/system"
   sudo systemctl daemon-reload
   sudo systemctl enable aspiesoft-clamav-download-scanner.service --now
 fi
