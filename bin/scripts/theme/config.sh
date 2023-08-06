@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # set theme basics
 sudo gsettings set org.gnome.desktop.interface clock-format 12h
 sudo gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
