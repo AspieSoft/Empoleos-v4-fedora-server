@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # fix keyboard shortcuts
 dconf reset /org/gnome/desktop/wm/keybindings/switch-to-workspace-up
 dconf reset /org/gnome/desktop/wm/keybindings/switch-to-workspace-down
