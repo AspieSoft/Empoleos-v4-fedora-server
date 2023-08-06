@@ -16,13 +16,15 @@ for arg in $@; do
   fi
 done
 
-rootDir=""
+cd "/"
+rootDir="/"
 user="$USER"
 
 if [ "$InstallISO" = "y" ]; then
   #todo: install iso from fedora server (remember to verify checksums before install)
 
   # set rootDir to use mounted directory
+  cd "/mnt"
   rootDir="/mnt"
   user="ask-for-user"
   exit # temp
@@ -31,28 +33,28 @@ fi
 echo "starting install..."
 
 # install theme files
-sudo tar -xvzf "./bin/assets/theme/themes.tar.gz" -C "$rootDir/usr/share/themes"
-sudo tar -xvzf "./bin/assets/theme/icons.tar.gz" -C "$rootDir/usr/share/icons"
-sudo tar -xvzf "./bin/assets/theme/sounds.tar.gz" -C "$rootDir/usr/share/sounds"
-sudo tar -xvzf "./bin/assets/theme/backgrounds.tar.gz" -C "$rootDir/usr/share/backgrounds"
+sudo tar -xvzf "$dir/bin/theme/themes.tar.gz" -C "usr/share/themes"
+sudo tar -xvzf "$dir/bin/theme/icons.tar.gz" -C "usr/share/icons"
+sudo tar -xvzf "$dir/bin/theme/sounds.tar.gz" -C "usr/share/sounds"
+sudo tar -xvzf "$dir/bin/theme/backgrounds.tar.gz" -C "usr/share/backgrounds"
 
 # set bash profile $PS1
 if ! [ -f "$rootDir/etc/profile.d/bash_ps.sh" ]; then
-  echo 'if [ "$PS1" ]; then' | sudo tee -a "$rootDir/etc/profile.d/bash_ps.sh" &>/dev/null
-  echo '  PS1="\[\e[m\][\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]]\[\e[0;31m\](\$?)\[\e[1;0m\]\\$ \[\e[m\]"' | sudo tee -a "$rootDir/etc/profile.d/bash_ps.sh" &>/dev/null
-  echo 'fi' | sudo tee -a "$rootDir/etc/profile.d/bash_ps.sh" &>/dev/null
+  echo 'if [ "$PS1" ]; then' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
+  echo '  PS1="\[\e[m\][\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]]\[\e[0;31m\](\$?)\[\e[1;0m\]\\$ \[\e[m\]"' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
+  echo 'fi' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
 fi
 
 # install installation service
-sudo cp -rf "./bin/empoleos-installer" "$rootDir/etc"
+sudo cp -rf "$dir/bin/empoleos-installer" "etc"
 if [ "$ServerMode" = "y" ]; then
-  sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "$rootDir/etc/empoleos-installer/run.sh"
+  sudo sed -r -i 's/^#ServerMode=/ServerMode=/m' "etc/empoleos-installer/run.sh"
 fi
-sudo rm -f "$rootDir/etc/empoleos-installer/empoleos-installer.service"
-sudo mkdir "$rootDir/etc/empoleos-installer/bin"
-sudo cp -rf "./bin/scripts" "$rootDir/etc/empoleos-installer/bin"
-sudo cp -rf "./bin/assets" "$rootDir/etc/empoleos-installer/bin"
-sudo cp -f "./bin/empoleos-installer/empoleos-installer.service" "$rootDir/etc/systemd/system"
+sudo rm -f "etc/empoleos-installer/empoleos-installer.service"
+sudo mkdir "etc/empoleos-installer/bin"
+sudo cp -rf "$dir/bin/scripts" "etc/empoleos-installer/bin"
+sudo cp -rf "$dir/bin/assets" "etc/empoleos-installer/bin"
+sudo cp -f "$dir/bin/empoleos-installer/empoleos-installer.service" "etc/systemd/system"
 
 # sudo systemctl daemon-reload
 # sudo systemctl enable empoleos-installer.service
@@ -62,15 +64,16 @@ cd "$dir"
 if [[ "$PWD" =~ empoleos/?$ ]]; then
   rm -rf "$PWD"
 fi
+cd "$rootDir"
 
 
 # enable temp auto login
-sudo mkdir "$rootDir/etc/systemd/system/getty@tty1.service.d"
-echo "[Service]" | sudo tee -a "$rootDir/etc/systemd/system/getty@tty1.service.d/override.conf"
-echo "ExecStart=" | sudo tee -a "$rootDir/etc/systemd/system/getty@tty1.service.d/override.conf"
-echo "ExecStart=-/sbin/agetty --noissue --autologin $user %I \$TERM" | sudo tee -a "$rootDir/etc/systemd/system/getty@tty1.service.d/override.conf"
-echo "Type=idle" | sudo tee -a "$rootDir/etc/systemd/system/getty@tty1.service.d/override.conf"
-echo "EOT" | sudo tee -a "$rootDir/etc/systemd/system/getty@tty1.service.d/override.conf"
+sudo mkdir "etc/systemd/system/getty@tty1.service.d"
+echo "[Service]" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "ExecStart=" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "ExecStart=-/sbin/agetty --noissue --autologin $user %I \$TERM" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "Type=idle" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
+echo "EOT" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
 
 
 if [ "$InstallISO" = "y" ]; then
@@ -79,7 +82,7 @@ if [ "$InstallISO" = "y" ]; then
   # cd $rootDir/etc/systemd/system/network.target.wants
   # sudo ln -rs "../empoleos-installer.service" "./empoleos-installer.service"
   # cd "$dir"
-  sudo ln -rs "/etc/systemd/system/empoleos-installer.service" "$rootDir/etc/systemd/system/network.target.wants/empoleos-installer.service"
+  sudo ln -rs "/etc/systemd/system/empoleos-installer.service" "etc/systemd/system/network.target.wants/empoleos-installer.service"
 
   #todo: unmount directory
 
