@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 sudoo systemctl disable sshd --now
 
 if test -f "/etc/ssh/sshd_config"; then
