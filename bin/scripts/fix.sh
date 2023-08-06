@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install common packages
 sudo dnf -y install nano
 sudo dnf -y install neofetch
