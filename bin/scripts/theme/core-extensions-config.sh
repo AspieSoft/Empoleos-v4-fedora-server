@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # config gnome core extensions
 
 # - date formatter
