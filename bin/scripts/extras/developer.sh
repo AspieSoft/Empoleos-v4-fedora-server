@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install vscode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 if ! test -f "/etc/yum.repos.d/vscode.repo" ; then
