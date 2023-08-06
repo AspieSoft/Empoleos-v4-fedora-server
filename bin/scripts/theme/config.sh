@@ -3,8 +3,8 @@
 dir="$1"
 
 # set theme basics
-sudo gsettings set org.gnome.desktop.interface clock-format 12h
-sudo gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+gsettings set org.gnome.desktop.interface clock-format 12h
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 # config theme settings
 gsettings set org.gnome.desktop.interface gtk-theme "Fluent-round-Dark"

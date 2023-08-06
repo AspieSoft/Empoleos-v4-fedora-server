@@ -16,7 +16,8 @@ sudo flatpak -y install flathub com.github.tchx84.Flatseal
 sudo dnf -y install dconf-editor gnome-tweaks gnome-extensions-app
 killall gnome-tweaks # this can fix the app if it will not open
 # sudo flatpak -y install flathub org.gnome.Extensions
-sudo snap install gnome-extension-manager
+sudo flatpak -y install flathub com.mattjakeman.ExtensionManager
+# sudo snap install gnome-extension-manager
 sudo dnf -y install gnome-disk-utility
 sudo dnf -y install gparted
 sudo dnf -y install gnome-boxes
@@ -100,18 +101,20 @@ fi
 
 # ensure root games directory exists
 if ! test -d "/usr/games"; then
-  sudo mkdir "/usr/games"
+  sudo mkdir "/games"
 fi
 
 # add games folder for user
+sudo mkdir "/games/$USER"
+sudo chown "$USER:$USER" "/games/$USER"
+sudo chmod -R 700 "/games/$USER"
+sudo ln -s /games/$USER "$HOME/.games"
+
 if ! test -d "$HOME/.local/share/Steam/steamapps"; then
-  sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
+  mkdir -p "$HOME/.local/share/Steam/steamapps"
 fi
-sudo mkdir "/usr/games/$USER"
-sudo chown "$USER:$USER" "/usr/games/$USER"
-sudo chmod -R 700 "/usr/games/$USER"
-mkdir "/usr/games/$USER/Steam"
-mv "$HOME/.local/share/Steam/steamapps" "/usr/games/$USER/Steam/steamapps"
-ln -s "/usr/games/$USER/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
+mkdir "$HOME/.games/Steam"
+mv "$HOME/.local/share/Steam/steamapps" "$HOME/.games/Steam/steamapps"
+ln -s "$HOME/.games/Steam/steamapps" "$HOME/.local/share/Steam/steamapps"
 
 sudo cp "$dir/bin/assets/adduser.local" "/usr/local/sbin"

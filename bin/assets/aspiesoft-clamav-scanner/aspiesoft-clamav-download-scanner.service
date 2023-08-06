@@ -1,4 +1,4 @@
-[Unit]
+sudo mkdir -p "$HOME/.local/share/Steam/steamapps"[Unit]
 Description=AspieSoft ClamAV Download Scanner
 
 [Service]

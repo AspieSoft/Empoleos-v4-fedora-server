@@ -42,8 +42,9 @@ else
   sudo rm -rf "/etc/systemd/system/getty@tty1.service.d"
 
   # remove install service
-  sudo systemctl disable empoleos-init.service
-  sudo rm -rf /etc/empoleos-init
+  sudo systemctl disable "empoleos-installer.service"
+  sudo rm -f "/etc/systemd/system/empoleos-installer.service"
+  sudo rm -rf "/etc/empoleos-installer"
 
   echo "Install Finished!"
   exit
@@ -58,7 +59,6 @@ echo "$runStep" | sudo tee "$dir/run/run.step"
 # cleanup
 sudo dnf clean all
 sudo dnf -y autoremove
-sudo dnf -y update
 sudo dnf -y distro-sync
 
 # reboot system

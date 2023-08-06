@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # add games folder for user
-if ! test -d "$HOME/.local/share/Steam/steamapps"; then
-  sudo mkdir -p "$HOME/.local/share/Steam/steamapps"
+sudo mkdir "/games/$1"
+sudo chown "$1:$1" "/games/$1"
+sudo chmod -R 700 "/games/$1"
+sudo ln -s /games/$1 "$4/.games"
+
+if ! test -d "$4/.local/share/Steam/steamapps"; then
+  mkdir -p "$4/.local/share/Steam/steamapps"
 fi
-sudo mkdir "/usr/games/$1"
-sudo chown "$1:$1" "/usr/games/$1"
-sudo chmod -R 700 "/usr/games/$1"
-mkdir "/usr/games/$1/Steam"
-mv "$4/.local/share/Steam/steamapps" "/usr/games/$1/Steam/steamapps"
-ln -s "/usr/games/$1/Steam/steamapps" "$4/.local/share/Steam/steamapps"
+mkdir "$4/.games/Steam"
+mv "$4/.local/share/Steam/steamapps" "$4/.games/Steam/steamapps"
+ln -s "$4/.games/Steam/steamapps" "$4/.local/share/Steam/steamapps"
