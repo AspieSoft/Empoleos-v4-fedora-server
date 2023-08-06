@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install python, c++, and java
 sudo dnf -y install python python3 python-pip python3-pip
 sudo dnf -y install gcc-c++ make gcc
