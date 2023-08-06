@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install shortcuts
 if ! [ -f "$HOME/.bashrc" ]; then
   sudo touch "$HOME/.bashrc"
@@ -13,7 +15,7 @@ if ! grep -q "# empoleos-aliases" "$HOME/.bashrc" ; then
 fi
 
 if ! [ -f "$HOME/.empoleos-aliases" ]; then
-  sudo cp "./bin/assets/empoleos-aliases.sh" "$HOME/.empoleos-aliases"
+  sudo cp "$dir/bin/assets/empoleos-aliases.sh" "$HOME/.empoleos-aliases"
 fi
 
 # install shortcuts for new users
@@ -29,5 +31,5 @@ if ! grep -q "# empoleos-aliases" "/etc/skel/.bashrc" ; then
 fi
 
 if ! [ -f "/etc/skel/.empoleos-aliases" ]; then
-  sudo cp "./bin/assets/empoleos-aliases.sh" "/etc/skel/.empoleos-aliases"
+  sudo cp "$dir/bin/assets/empoleos-aliases.sh" "/etc/skel/.empoleos-aliases"
 fi
