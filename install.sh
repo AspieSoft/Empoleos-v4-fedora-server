@@ -39,7 +39,7 @@ sudo tar -xvzf "$dir/bin/theme/sounds.tar.gz" -C "usr/share/sounds"
 sudo tar -xvzf "$dir/bin/theme/backgrounds.tar.gz" -C "usr/share/backgrounds"
 
 # set bash profile $PS1
-if ! [ -f "$rootDir/etc/profile.d/bash_ps.sh" ]; then
+if ! [ -f "etc/profile.d/bash_ps.sh" ]; then
   echo 'if [ "$PS1" ]; then' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
   echo '  PS1="\[\e[m\][\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]]\[\e[0;31m\](\$?)\[\e[1;0m\]\\$ \[\e[m\]"' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
   echo 'fi' | sudo tee -a "etc/profile.d/bash_ps.sh" &>/dev/null
@@ -56,9 +56,6 @@ sudo cp -rf "$dir/bin/scripts" "etc/empoleos-installer/bin"
 sudo cp -rf "$dir/bin/assets" "etc/empoleos-installer/bin"
 sudo cp -f "$dir/bin/empoleos-installer/empoleos-installer.service" "etc/systemd/system"
 
-# sudo systemctl daemon-reload
-# sudo systemctl enable empoleos-installer.service
-# sudo ln -s "/$rootDir/etc/systemd/system/empoleos-installer.service" "/etc/systemd/system/network.target.wants/empoleos-installer.service"
 
 cd "$dir"
 if [[ "$PWD" =~ empoleos/?$ ]]; then
@@ -78,10 +75,10 @@ echo "EOT" | sudo tee -a "etc/systemd/system/getty@tty1.service.d/override.conf"
 
 if [ "$InstallISO" = "y" ]; then
   # enable installer
-  # sudo ln -s "$rootDir/etc/systemd/system/empoleos-installer.service" "$rootDir/etc/systemd/system/network.target.wants/empoleos-installer.service"
-  # cd $rootDir/etc/systemd/system/network.target.wants
+  # sudo ln -s "etc/systemd/system/empoleos-installer.service" "$rootDir/etc/systemd/system/network.target.wants/empoleos-installer.service"
+  # cd etc/systemd/system/network.target.wants
   # sudo ln -rs "../empoleos-installer.service" "./empoleos-installer.service"
-  # cd "$dir"
+  # cd "$rootDir"
   sudo ln -rs "/etc/systemd/system/empoleos-installer.service" "etc/systemd/system/network.target.wants/empoleos-installer.service"
 
   #todo: unmount directory
