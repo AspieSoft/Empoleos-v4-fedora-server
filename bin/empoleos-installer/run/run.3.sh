@@ -2,9 +2,11 @@
 
 #!NON-SERVER/DESKTOP-ONLY
 
-bash "./bin/scripts/theme/user-extensions-config.sh"
+dir="$PWD"
 
-bash "./bin/scripts/fix-keyboard-shortcuts.sh"
+bash "$dir/bin/scripts/theme/user-extensions-config.sh"
+
+bash "$dir/bin/scripts/fix-keyboard-shortcuts.sh"
 
 # copy extension settings for new users
 sudo mkdir -p "/etc/skel/.local/share/gnome-shell/extensions"
