@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install gnome core extensions
 sudo pip3 install --upgrade git+https://github.com/essembeh/gnome-extensions-cli
 
