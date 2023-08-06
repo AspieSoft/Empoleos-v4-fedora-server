@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dir="$1"
+
 # install gnome user extension
 gext -F install burn-my-windows@schneegans.github.com
 gext -F install compiz-alike-magic-lamp-effect@hermes83.github.com
