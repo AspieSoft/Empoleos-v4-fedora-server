@@ -35,6 +35,7 @@ if [ -f "$dir/run/run.$runStep.sh" ]; then
   #todo: verify checksum for script before running
 
   echo "continuing install! $runStep/$stepCount"
+  cd "$dir"
   bash "$dir/run/run.$runStep.sh" "$ServerMode"
 else
   # disable temp auto login
@@ -47,6 +48,8 @@ else
   echo "Install Finished!"
   exit
 fi
+
+cd "$dir"
 
 runStep="$((runStep+1))"
 echo "$runStep" | sudo tee "$dir/run/run.step"
