@@ -96,11 +96,11 @@ if ! grep -q "Steam" "/etc/skel/.hidden" ; then
   echo "Steam" | sudo tee -a "/etc/skel/.hidden"
 fi
 
-#todo: will need to add a script to run when new users are created, to automatically create a user specific steam folder in the "/usr/games" directory
-# may use symlinks to make steam games always use "/usr/games" folder by default
+#todo: will need to add a script to run when new users are created, to automatically create a user specific steam folder in the "/games" directory
+# may use symlinks to make steam games always use "/games" folder by default
 
 # ensure root games directory exists
-if ! test -d "/usr/games"; then
+if ! test -d "/games"; then
   sudo mkdir "/games"
 fi
 
