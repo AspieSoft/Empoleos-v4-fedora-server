@@ -41,3 +41,7 @@ fi
 if ! grep -q "snap" "/etc/skel/.hidden" ; then
   echo "snap" | sudo tee -a "/etc/skel/.hidden"
 fi
+
+# fix webcam and mic access for apps
+sudo dnf -y install guvcview
+sudo modprobe -r uvcvideo && sudo modprobe uvcvideo
