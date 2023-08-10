@@ -45,3 +45,19 @@ fi
 # fix webcam and mic access for apps
 sudo dnf -y install guvcview
 sudo modprobe -r uvcvideo && sudo modprobe uvcvideo
+
+if ! [ -f "$HOME/.bash_profile" ]; then
+  sudo touch "$HOME/.bash_profile"
+fi
+
+if ! grep -q "export QT_QPA_PLATFORM=wayland" "$HOME/.bash_profile" ; then
+  echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "$HOME/.bash_profile"
+fi
+
+if ! [ -f "/etc/skel/.bash_profile" ]; then
+  sudo touch "/etc/skel/.bash_profile"
+fi
+
+if ! grep -q "export QT_QPA_PLATFORM=wayland" "/etc/skel/.bash_profile" ; then
+  echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "/etc/skel/.bash_profile"
+fi
