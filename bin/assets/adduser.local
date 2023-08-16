@@ -1,14 +1,34 @@
 #!/bin/bash
 
-# add games folder for user
-sudo mkdir "/games/$1"
-sudo chown "$1:$1" "/games/$1"
-sudo chmod -R 700 "/games/$1"
-sudo ln -s /games/$1 "$4/.games"
+user="$1"
+home="$4"
 
-if ! test -d "$4/.local/share/Steam/steamapps"; then
-  mkdir -p "$4/.local/share/Steam/steamapps"
-fi
-mkdir "$4/.games/Steam"
-mv "$4/.local/share/Steam/steamapps" "$4/.games/Steam/steamapps"
-ln -s "$4/.games/Steam/steamapps" "$4/.local/share/Steam/steamapps"
+# add games folder for user
+sudo mkdir "/games/$user"
+sudo chown "$user:$user" "/games/$user"
+sudo chmod -R 700 "/games/$user"
+sudo ln -s "/games/$user" "$home/.games"
+
+# link steam dirs to .games
+mkdir "$home/.games/Steam"
+
+function linkSteamDir {
+  if ! test -d "$home/.local/share/Steam/$1"; then
+    mkdir -p "$home/.local/share/Steam/$1"
+  fi
+  mv "$home/.local/share/Steam/$1" "$home/.games/Steam/$1"
+  ln -s "$home/.games/Steam/$1" "$home/.local/share/Steam/$1"
+}
+
+linkSteamDir "steamapps"
+linkSteamDir "steam"
+linkSteamDir "servers"
+linkSteamDir "appcache"
+linkSteamDir "depotcache"
+linkSteamDir "package"
+linkSteamDir "linux64"
+linkSteamDir "linux32"
+linkSteamDir "ubuntu12_64"
+linkSteamDir "ubuntu12_32"
+linkSteamDir "legacycompat"
+linkSteamDir "graphics"
