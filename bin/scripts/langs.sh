@@ -65,6 +65,9 @@ fi
 if ! test -f "/etc/profile.d/golang.sh"; then
   sudo touch "/etc/profile.d/golang.sh"
 fi
+if ! test -d "/usr/lib/go" && test -d "/usr/lib/golang"; then
+  sudo ln -s "/usr/lib/golang" "/usr/lib/go"
+fi
 echo 'export GOROOT=/usr/lib/go' | sudo tee -a "/etc/profile.d/golang.sh"
 echo 'export GOPATH=$HOME/go' | sudo tee -a "/etc/profile.d/golang.sh"
 echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' | sudo tee -a "/etc/profile.d/golang.sh"
