@@ -61,6 +61,14 @@ if ! grep -q "go" "/etc/skel/.hidden" ; then
   echo "go" | sudo tee -a "/etc/skel/.hidden"
 fi
 
+# add gopath
+if ! test -f "/etc/profile.d/golang.sh"; then
+  sudo touch "/etc/profile.d/golang.sh"
+fi
+echo 'export GOROOT=/usr/lib/go' | sudo tee -a "/etc/profile.d/golang.sh"
+echo 'export GOPATH=$HOME/go' | sudo tee -a "/etc/profile.d/golang.sh"
+echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' | sudo tee -a "/etc/profile.d/golang.sh"
+
 # install docker
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
