@@ -71,6 +71,7 @@ fi
 echo 'export GOROOT=/usr/lib/go' | sudo tee -a "/etc/profile.d/golang.sh"
 echo 'export GOPATH=$HOME/go' | sudo tee -a "/etc/profile.d/golang.sh"
 echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' | sudo tee -a "/etc/profile.d/golang.sh"
+echo 'export GOFLAGS="-vet=off"' | sudo tee -a "/etc/profile.d/golang.sh" # prevent go from failing a test over basic warnings
 
 # install docker
 sudo dnf -y install dnf-plugins-core
