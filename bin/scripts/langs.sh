@@ -57,9 +57,15 @@ sudo dnf -y install pcre-devel
 
 # for gui window and graphics
 sudo dnf -y install libX11-devel
+libList="libX11-devel"
 for lib in $(dnf search libX | grep "^libX" | sed -E 's/^([A-Za-z0-9_\-]*).*$/\1/m'); do
-  sudo dnf -y install "$lib"
+  # sudo dnf -y install "$lib"
+  if ! [[ "$libList" =~ "$lib"$ ]]; then
+    libList="$libList $lib"
+  fi
 done
+sudo dnf -y install $libList
+
 
 if ! grep -q "go" "$HOME/.hidden" ; then
   echo "go" | sudo tee -a "$HOME/.hidden"
