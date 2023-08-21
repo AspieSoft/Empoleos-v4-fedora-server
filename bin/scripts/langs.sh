@@ -53,7 +53,7 @@ sudo dnf -y install git
 # install golang
 sudo dnf -y install golang
 sudo ln -s /lib/golang /usr/share/go
-sudo dnf -y install pcre-devel
+sudo dnf -y install pcre-devel libX11-devel
 if ! grep -q "go" "$HOME/.hidden" ; then
   echo "go" | sudo tee -a "$HOME/.hidden"
 fi
