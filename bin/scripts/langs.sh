@@ -65,6 +65,7 @@ for lib in $(dnf search libX | grep "^libX" | sed -E 's/^([A-Za-z0-9_\-]*).*$/\1
   fi
 done
 sudo dnf -y install $libList
+sudo dnf -y install mesa-libGLw GLC_lib-devel
 
 
 if ! grep -q "go" "$HOME/.hidden" ; then
