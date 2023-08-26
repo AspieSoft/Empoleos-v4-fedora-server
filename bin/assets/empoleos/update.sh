@@ -24,7 +24,7 @@ sleep 1
 
 echo "starting update for empoleos"
 
-gitVer="$(curl --silent 'https://api.github.com/repos/AspieSoft/Empoleos/releases/latest' | grep '\"tag_name\":' | sed -E 's/.*\"([^\"]+)\".*/\1/')"
+gitVer="$(curl --silent 'https://api.github.com/repos/AspieSoft/Empoleos/releases/latest' | grep '"tag_name":' | sed -E 's/.*\"([^\"]+)\".*/\1/')"
 
 if [ "$gitVer" = "" ]; then
   echo "error: failed to connect to github!"
