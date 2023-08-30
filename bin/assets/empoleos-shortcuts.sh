@@ -41,30 +41,30 @@ function go {
     fi
   done
 
-  if [ "$cmd" = "build" -a "$flagS" = "1" -a "$flagA" = "1" ]; then
+  if [ "$1" = "build" -a "$flagS" = "1" -a "$flagA" = "1" ]; then
     mkdir "go-dist"
-    CGO_ENABLED=0 command go build $cmd -o "go-dist/default"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" command go build $cmd -o "go-dist/linux.amd64"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="arm64" command go build $cmd -o "go-dist/linux.arm64"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="arm" command go build $cmd -o "go-dist/linux.arm"
-    CGO_ENABLED=0 GOOS="windows" GOARCH="amd64" command go build $cmd -o "go-dist/windows.amd64.exe"
-    CGO_ENABLED=0 GOOS="windows" GOARCH="386" command go build $cmd -o "go-dist/windows.386.exe"
-    CGO_ENABLED=0 GOOS="android" GOARCH="arm64" command go build $cmd -o "go-dist/android.arm64"
-    CGO_ENABLED=0 GOOS="ios" GOARCH="arm64" command go build $cmd -o "go-dist/ios.arm64"
-    CGO_ENABLED=0 GOOS="js" GOARCH="wasm" command go build $cmd -o "go-dist/js.wasm"
-  elif [ "$cmd" = "build" -a "$flagS" = "1" ]; then
-    CGO_ENABLED=0 command go build $cmd
-  elif [ "$cmd" = "build" -a "$flagA" = "1" ]; then
+    CGO_ENABLED=0 command go $cmd -o "go-dist/default"
+    CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" command go $cmd -o "go-dist/linux.amd64"
+    CGO_ENABLED=0 GOOS="linux" GOARCH="arm64" command go $cmd -o "go-dist/linux.arm64"
+    CGO_ENABLED=0 GOOS="linux" GOARCH="arm" command go $cmd -o "go-dist/linux.arm"
+    CGO_ENABLED=0 GOOS="windows" GOARCH="amd64" command go $cmd -o "go-dist/windows.amd64.exe"
+    CGO_ENABLED=0 GOOS="windows" GOARCH="386" command go $cmd -o "go-dist/windows.386.exe"
+    CGO_ENABLED=0 GOOS="android" GOARCH="arm64" command go $cmd -o "go-dist/android.arm64"
+    CGO_ENABLED=0 GOOS="ios" GOARCH="arm64" command go $cmd -o "go-dist/ios.arm64"
+    CGO_ENABLED=0 GOOS="js" GOARCH="wasm" command go $cmd -o "go-dist/js.wasm"
+  elif [ "$1" = "build" -a "$flagS" = "1" ]; then
+    CGO_ENABLED=0 command go $cmd
+  elif [ "$1" = "build" -a "$flagA" = "1" ]; then
     mkdir "go-dist"
-    command go build $cmd -o "go-dist/default"
-    GOOS="linux" GOARCH="amd64" command go build $cmd -o "go-dist/linux.amd64"
-    GOOS="linux" GOARCH="arm64" command go build $cmd -o "go-dist/linux.arm64"
-    GOOS="linux" GOARCH="arm" command go build $cmd -o "go-dist/linux.arm"
-    GOOS="windows" GOARCH="amd64" command go build $cmd -o "go-dist/windows.amd64.exe"
-    GOOS="windows" GOARCH="386" command go build $cmd -o "go-dist/windows.386.exe"
-    GOOS="android" GOARCH="arm64" command go build $cmd -o "go-dist/android.arm64"
-    GOOS="ios" GOARCH="arm64" command go build $cmd -o "go-dist/ios.arm64"
-    GOOS="js" GOARCH="wasm" command go build $cmd -o "go-dist/js.wasm"
+    command go $cmd -o "go-dist/default"
+    GOOS="linux" GOARCH="amd64" command go $cmd -o "go-dist/linux.amd64"
+    GOOS="linux" GOARCH="arm64" command go $cmd -o "go-dist/linux.arm64"
+    GOOS="linux" GOARCH="arm" command go $cmd -o "go-dist/linux.arm"
+    GOOS="windows" GOARCH="amd64" command go $cmd -o "go-dist/windows.amd64.exe"
+    GOOS="windows" GOARCH="386" command go $cmd -o "go-dist/windows.386.exe"
+    GOOS="android" GOARCH="arm64" command go $cmd -o "go-dist/android.arm64"
+    GOOS="ios" GOARCH="arm64" command go $cmd -o "go-dist/ios.arm64"
+    GOOS="js" GOARCH="wasm" command go $cmd -o "go-dist/js.wasm"
   elif [ "$1" = "help" -a "$2" = "build" ]; then
     command go $@
     echo "-----"
