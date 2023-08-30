@@ -28,32 +28,34 @@ function mvlink {
 }
 
 function go {
-  local flagS=0
-  local flagA=0
+  local flagS="-1"
+  local flagA="0"
   local cmd=""
   for flag in $@; do
     if [ "$flag" = "-s" ]; then
-      flagS=1
+      flagS="0"
+    elif [ "$flag" = "-S" ]; then
+      flagS="1"
     elif [ "$flag" = "-A" ]; then
-      flagA=1
+      flagA="1"
     else
       cmd="$cmd $flag"
     fi
   done
 
-  if [ "$1" = "build" -a "$flagS" = "1" -a "$flagA" = "1" ]; then
+  if [ "$1" = "build" -a "$flagS" != "-1" -a "$flagA" = "1" ]; then
     mkdir "go-dist"
-    CGO_ENABLED=0 command go $cmd -o "go-dist/default"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="amd64" command go $cmd -o "go-dist/linux.amd64"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="arm64" command go $cmd -o "go-dist/linux.arm64"
-    CGO_ENABLED=0 GOOS="linux" GOARCH="arm" command go $cmd -o "go-dist/linux.arm"
-    CGO_ENABLED=0 GOOS="windows" GOARCH="amd64" command go $cmd -o "go-dist/windows.amd64.exe"
-    CGO_ENABLED=0 GOOS="windows" GOARCH="386" command go $cmd -o "go-dist/windows.386.exe"
-    CGO_ENABLED=0 GOOS="android" GOARCH="arm64" command go $cmd -o "go-dist/android.arm64"
-    CGO_ENABLED=0 GOOS="ios" GOARCH="arm64" command go $cmd -o "go-dist/ios.arm64"
-    CGO_ENABLED=0 GOOS="js" GOARCH="wasm" command go $cmd -o "go-dist/js.wasm"
-  elif [ "$1" = "build" -a "$flagS" = "1" ]; then
-    CGO_ENABLED=0 command go $cmd
+    CGO_ENABLED="$flagS" command go $cmd -o "go-dist/default"
+    CGO_ENABLED="$flagS" GOOS="linux" GOARCH="amd64" command go $cmd -o "go-dist/linux.amd64"
+    CGO_ENABLED="$flagS" GOOS="linux" GOARCH="arm64" command go $cmd -o "go-dist/linux.arm64"
+    CGO_ENABLED="$flagS" GOOS="linux" GOARCH="arm" command go $cmd -o "go-dist/linux.arm"
+    CGO_ENABLED="$flagS" GOOS="windows" GOARCH="amd64" command go $cmd -o "go-dist/windows.amd64.exe"
+    CGO_ENABLED="$flagS" GOOS="windows" GOARCH="386" command go $cmd -o "go-dist/windows.386.exe"
+    CGO_ENABLED="$flagS" GOOS="android" GOARCH="arm64" command go $cmd -o "go-dist/android.arm64"
+    CGO_ENABLED="$flagS" GOOS="ios" GOARCH="arm64" command go $cmd -o "go-dist/ios.arm64"
+    CGO_ENABLED="$flagS" GOOS="js" GOARCH="wasm" command go $cmd -o "go-dist/js.wasm"
+  elif [ "$1" = "build" -a "$flagS" != "-1" ]; then
+    CGO_ENABLED="$flagS" command go $cmd
   elif [ "$1" = "build" -a "$flagA" = "1" ]; then
     mkdir "go-dist"
     command go $cmd -o "go-dist/default"
@@ -70,6 +72,7 @@ function go {
     echo "-----"
     echo "empoleos mod"
     echo "-s  set CGO_ENABLED=0 for an independent binary"
+    echo "-S  set CGO_ENABLED=1 for an independent binary"
     echo "-A  generate a binary for a large number of devices"
   else
     command go $@
