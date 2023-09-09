@@ -4,9 +4,9 @@
 
 dir="$PWD"
 
-bash "$dir/bin/scripts/theme/user-extensions-config.sh" "$dir"
+source "$dir/bin/scripts/theme/user-extensions-config.sh" "$dir"
 
-bash "$dir/bin/scripts/fix-keyboard-shortcuts.sh" "$dir"
+source "$dir/bin/scripts/fix-keyboard-shortcuts.sh" "$dir"
 
 # copy extension settings for new users
 sudo mkdir -p "/etc/skel/.local/share/gnome-shell/extensions"

@@ -82,26 +82,26 @@ if ! [ -f "/etc/profile.d/empoleos.sh" ]; then
 fi
 
 # run install scripts
-bash "$dir/bin/scripts/dnf/preformance.sh" "$dir"
-bash "$dir/bin/scripts/dnf/fix.sh" "$dir"
-bash "$dir/bin/scripts/dnf/langs.sh" "$dir"
-bash "$dir/bin/scripts/dnf/security.sh" "$dir"
+source "$dir/bin/scripts/dnf/preformance.sh" "$dir"
+source "$dir/bin/scripts/dnf/fix.sh" "$dir"
+source "$dir/bin/scripts/dnf/langs.sh" "$dir"
+source "$dir/bin/scripts/dnf/security.sh" "$dir"
 
 # run non-server desktop install scripts
 if ! [ "$ServerMode" = "y" ]; then
-  bash "$dir/bin/scripts/dnf/desktop.sh" "$dir"
-  bash "$dir/bin/scripts/desktop-security.sh" "$dir"
+  source "$dir/bin/scripts/dnf/desktop.sh" "$dir"
+  source "$dir/bin/scripts/desktop-security.sh" "$dir"
 
   # install common apps
-  bash "$dir/bin/scripts/dnf/apps.sh" "$dir"
+  source "$dir/bin/scripts/dnf/apps.sh" "$dir"
 
   # install optional
   #todo: make optional
-  bash "$dir/bin/scripts/extras/wine.dnf.sh" "$dir"
-  bash "$dir/bin/scripts/extras/developer.dnf.sh" "$dir"
-  bash "$dir/bin/scripts/extras/office.sh" "$dir"
+  source "$dir/bin/scripts/extras/wine.dnf.sh" "$dir"
+  source "$dir/bin/scripts/extras/developer.dnf.sh" "$dir"
+  source "$dir/bin/scripts/extras/office.sh" "$dir"
 
   # install theme
-  bash "$dir/bin/scripts/theme/config.sh" "$dir"
-  bash "$dir/bin/scripts/theme/core-extensions.sh" "$dir"
+  source "$dir/bin/scripts/theme/config.sh" "$dir"
+  source "$dir/bin/scripts/theme/core-extensions.sh" "$dir"
 fi

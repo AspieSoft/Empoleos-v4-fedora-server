@@ -52,13 +52,13 @@ if [ -f "$dir/run/run.$runStep.sh" ]; then
 
   echo "continuing install! $runStep/$stepCount"
   cd "$dir"
-  bash "$dir/run/run.$runStep.sh" "$ServerMode" "$package_manager"
+  source "$dir/run/run.$runStep.sh" "$ServerMode" "$package_manager"
 elif [ -f "$dir/run/run.$runStep.$package_manager.sh" ]; then
   #todo: verify checksum for script before running
 
   echo "continuing install! $runStep/$stepCount"
   cd "$dir"
-  bash "$dir/run/run.$runStep.sh" "$ServerMode" "$package_manager"
+  source "$dir/run/run.$runStep.sh" "$ServerMode" "$package_manager"
 else
   # disable temp auto login
   sudo rm -rf "/etc/systemd/system/getty@tty1.service.d"

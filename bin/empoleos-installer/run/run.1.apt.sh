@@ -79,28 +79,28 @@ if ! [ -f "/etc/profile.d/empoleos.sh" ]; then
 fi
 
 # run install scripts
-bash "$dir/bin/scripts/apt/preformance.sh" "$dir"
-bash "$dir/bin/scripts/apt/fix.sh" "$dir"
-bash "$dir/bin/scripts/apt/langs.sh" "$dir"
-bash "$dir/bin/scripts/apt/security.sh" "$dir"
+source "$dir/bin/scripts/apt/preformance.sh" "$dir"
+source "$dir/bin/scripts/apt/fix.sh" "$dir"
+source "$dir/bin/scripts/apt/langs.sh" "$dir"
+source "$dir/bin/scripts/apt/security.sh" "$dir"
 
 # run non-server desktop install scripts
 if ! [ "$ServerMode" = "y" ]; then
   if [ "$(cat /etc/os-release | grep '^NAME="Zorin OS"' 2>/dev/null)" != "" ]; then
-    bash "$dir/bin/scripts/apt/desktop.sh" "$dir"
+    source "$dir/bin/scripts/apt/desktop.sh" "$dir"
   fi
-  bash "$dir/bin/scripts/desktop-security.sh" "$dir"
+  source "$dir/bin/scripts/desktop-security.sh" "$dir"
 
   # install common apps
-  bash "$dir/bin/scripts/apt/apps.sh" "$dir"
+  source "$dir/bin/scripts/apt/apps.sh" "$dir"
 
   # install optional
   #todo: make optional
-  bash "$dir/bin/scripts/extras/wine.apt.sh" "$dir"
-  bash "$dir/bin/scripts/extras/developer.apt.sh" "$dir"
-  bash "$dir/bin/scripts/extras/office.sh" "$dir"
+  source "$dir/bin/scripts/extras/wine.apt.sh" "$dir"
+  source "$dir/bin/scripts/extras/developer.apt.sh" "$dir"
+  source "$dir/bin/scripts/extras/office.sh" "$dir"
 
   # install theme
-  bash "$dir/bin/scripts/theme/config.sh" "$dir"
-  bash "$dir/bin/scripts/theme/core-extensions.sh" "$dir"
+  source "$dir/bin/scripts/theme/config.sh" "$dir"
+  source "$dir/bin/scripts/theme/core-extensions.sh" "$dir"
 fi
