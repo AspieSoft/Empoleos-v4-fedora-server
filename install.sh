@@ -41,10 +41,10 @@ fi
 echo "starting install..."
 
 # install theme files
-sudo tar -xvzf "$dir/bin/theme/themes.tar.gz" -C "usr/share/themes"
-sudo tar -xvzf "$dir/bin/theme/icons.tar.gz" -C "usr/share/icons"
-sudo tar -xvzf "$dir/bin/theme/sounds.tar.gz" -C "usr/share/sounds"
-sudo tar -xvzf "$dir/bin/theme/backgrounds.tar.gz" -C "usr/share/backgrounds"
+sudo tar -xzf "$dir/bin/theme/themes.tar.gz" -C "usr/share/themes"
+sudo tar -xzf "$dir/bin/theme/icons.tar.gz" -C "usr/share/icons"
+sudo tar -xzf "$dir/bin/theme/sounds.tar.gz" -C "usr/share/sounds"
+sudo tar -xzf "$dir/bin/theme/backgrounds.tar.gz" -C "usr/share/backgrounds"
 
 # set bash profile $PS1
 if ! [ -f "etc/profile.d/bash_ps.sh" ]; then
