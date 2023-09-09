@@ -86,7 +86,9 @@ bash "$dir/bin/scripts/apt/security.sh" "$dir"
 
 # run non-server desktop install scripts
 if ! [ "$ServerMode" = "y" ]; then
-  bash "$dir/bin/scripts/apt/desktop.sh" "$dir"
+  if [ "$(cat /etc/os-release | grep '^NAME="Zorin OS"' 2>/dev/null)" != "" ]; then
+    bash "$dir/bin/scripts/apt/desktop.sh" "$dir"
+  fi
   bash "$dir/bin/scripts/desktop-security.sh" "$dir"
 
   # install common apps

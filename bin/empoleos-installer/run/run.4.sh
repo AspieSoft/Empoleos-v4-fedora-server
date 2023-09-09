@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ServerMode="$1"
+package_manager="$2"
 dir="$PWD"
 
 # install auto updates
@@ -24,6 +25,13 @@ sudo powerprofilesctl set balanced
 
 # wait until end to enable gdm
 if ! [ "$ServerMode" = "y" ]; then
-  sudo systemctl set-default graphical.target
-  sudo systemctl enable gdm
+  if [ "$package_manager" = "apt" ]; then
+    if ! [ "$(cat /etc/os-release | grep '^NAME="Zorin OS"' 2>/dev/null)" != "" ]; then
+      sudo systemctl set-default graphical.target
+      sudo systemctl enable gdm3
+    fi
+  else
+    sudo systemctl set-default graphical.target
+    sudo systemctl enable gdm
+  fi
 fi

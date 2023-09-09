@@ -49,15 +49,15 @@ sudo modprobe -r uvcvideo && sudo modprobe uvcvideo
 if ! [ -f "$HOME/.bash_profile" ]; then
   sudo touch "$HOME/.bash_profile"
 fi
-
-if ! grep -q "export QT_QPA_PLATFORM=wayland" "$HOME/.bash_profile" ; then
-  echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "$HOME/.bash_profile"
-fi
-
 if ! [ -f "/etc/skel/.bash_profile" ]; then
   sudo touch "/etc/skel/.bash_profile"
 fi
 
-if ! grep -q "export QT_QPA_PLATFORM=wayland" "/etc/skel/.bash_profile" ; then
-  echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "/etc/skel/.bash_profile"
+if ! [ "$(cat /etc/os-release | grep '^NAME="Zorin OS"' 2>/dev/null)" != "" ]; then
+  if ! grep -q "export QT_QPA_PLATFORM=wayland" "$HOME/.bash_profile" ; then
+    echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "$HOME/.bash_profile"
+  fi
+  if ! grep -q "export QT_QPA_PLATFORM=wayland" "/etc/skel/.bash_profile" ; then
+    echo "export QT_QPA_PLATFORM=wayland" | sudo tee -a "/etc/skel/.bash_profile"
+  fi
 fi

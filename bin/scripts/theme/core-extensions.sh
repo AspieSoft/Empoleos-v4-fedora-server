@@ -5,14 +5,17 @@ dir="$1"
 # install gnome core extensions
 sudo pip3 install --upgrade git+https://github.com/essembeh/gnome-extensions-cli
 
-gext -F install arcmenu@arcmenu.com
-gext -F install dash-to-panel@jderose9.github.com
-gext -F install vertical-workspaces@G-dH.github.com
-gext -F install user-theme@gnome-shell-extensions.gcampax.github.com
-gext -F install gnome-ui-tune@itstime.tech
+if ! [ "$(cat /etc/os-release | grep '^NAME="Zorin OS"' 2>/dev/null)" != "" ]; then
+  gext -F install arcmenu@arcmenu.com
+  gext -F install dash-to-panel@jderose9.github.com
+  gext -F install vertical-workspaces@G-dH.github.com
+  gext -F install user-theme@gnome-shell-extensions.gcampax.github.com
+  gext -F install gnome-ui-tune@itstime.tech
 
-gext -F install ding@rastersoft.com
-gext -F install gtk4-ding@smedius.gitlab.com
+  gext -F install ding@rastersoft.com
+  gext -F install gtk4-ding@smedius.gitlab.com
+fi
+
 
 gext -F install drive-menu@gnome-shell-extensions.gcampax.github.com
 gext -F install date-menu-formatter@marcinjakubowski.github.com
