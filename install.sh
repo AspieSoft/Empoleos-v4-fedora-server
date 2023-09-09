@@ -6,6 +6,14 @@ dir="$PWD"
 sudo echo
 
 #todo: verify checksums for script files based on github repo
+# verify checksums
+# gitSum=$(curl --silent "https://raw.githubusercontent.com/AspieSoft/Empoleos/master/install.sh" | sha256sum | sed -E 's/([a-zA-Z0-9]+).*$/\1/')
+# sum=$(cat "install.sh" | sha256sum | sed -E 's/([a-zA-Z0-9]+).*$/\1/')
+# if ! [ "$sum" = "$gitSum" ]; then
+#   echo "error: checksum failed!"
+#   exit
+# fi
+
 
 for arg in $@; do
   echo "$arg"
