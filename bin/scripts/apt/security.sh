@@ -86,6 +86,7 @@ if ! [ -d "/etc/aspiesoft-clamav-scanner" ]; then
   sudo systemctl enable aspiesoft-clamav-download-scanner.service --now
 fi
 
+#todo: fix script asking to configure mail server (not sure what script, but its somewhere in this file)
 
 # install auto updates
 sudo apt -y install unattended-upgrades
