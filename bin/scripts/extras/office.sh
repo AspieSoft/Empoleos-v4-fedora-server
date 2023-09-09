@@ -2,4 +2,6 @@
 
 dir="$1"
 
-sudo snap install libreoffice
+if [ "$(which "libreoffice" 2>/dev/null)" = "" ]; then
+  sudo snap install libreoffice
+fi

@@ -2,7 +2,7 @@
 
 dir="$1"
 
-sudoo systemctl disable sshd --now
+sudo systemctl disable sshd --now
 
 if test -f "/etc/ssh/sshd_config"; then
   sudo sed -r -i 's/^PermitRootLogin (.*)$/PermitRootLogin no/m' "/etc/ssh/sshd_config"

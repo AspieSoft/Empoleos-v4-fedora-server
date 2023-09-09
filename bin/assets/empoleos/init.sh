@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# run power preformance updator
-sudo bash /etc/empoleos/power_preformance.sh &
-
 # schedule auto updates
 if ! [[ $(crontab -l) == *"#empoleos-updates"* ]] ; then
   crontab -l | { cat; echo '0 2 * * * sudo bash /etc/empoleos/update.sh #empoleos-updates'; } | crontab -

@@ -2,7 +2,7 @@ sudo mkdir -p "$HOME/.local/share/Steam/steamapps"[Unit]
 Description=AspieSoft ClamAV Download Scanner
 
 [Service]
-ExecStart=/bin/bash /etc/aspiesoft-clamav-scanner/start.sh
+ExecStart=/bin/bash /etc/aspiesoft-clamav-scanner/init.sh
 
 [Install]
 WantedBy=multi-user.target

@@ -6,6 +6,15 @@ dir="$PWD"
 #ServerMode="y"
 
 
+if [ "$(which apt)" != "" ] &>/dev/null; then
+  package_manager="apt"
+elif [ "$(which dnf)" != "" ] &>/dev/null; then
+  package_manager="dnf"
+elif [ "$(which rpm-ostree)" != "" ] &>/dev/null; then
+  package_manager="rpm-ostree"
+fi
+
+
 # wait for wifi (timeout=5min)
 tries=0
 while [ "$(ping -c1 www.google.com 2>/dev/null)" == "" ]; do
@@ -84,7 +93,8 @@ for file in "${fileList[@]}"; do
       sum=$(cat "$localUpdateDir/$file" | sha256sum | sed -E 's/([a-zA-Z0-9]+).*$/\1/')
       if [ "$sum" = "$gitSum" ]; then
         echo "updating $ver -> ${fileVer[0]}.${fileVer[1]}.${fileVer[2]}"
-        sudo bash "./$localUpdateDir/$file"
+
+        sudo bash "./$localUpdateDir/$file" "$package_manager"
         ver="${fileVer[0]}.${fileVer[1]}.${fileVer[2]}"
       else
         echo "checksum failed for update ${fileVer[0]}.${fileVer[1]}.${fileVer[2]}"
