@@ -135,3 +135,7 @@ linkSteamDir "legacycompat"
 linkSteamDir "graphics"
 
 sudo cp "$dir/bin/assets/adduser.local" "/usr/local/sbin"
+
+
+#todo: consider adding
+# sudo dnf install lite-xl
