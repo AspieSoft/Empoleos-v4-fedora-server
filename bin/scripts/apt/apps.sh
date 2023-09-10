@@ -139,3 +139,9 @@ linkSteamDir "legacycompat"
 linkSteamDir "graphics"
 
 sudo cp "$dir/bin/assets/adduser.local" "/usr/local/sbin"
+
+
+#todo: consider adding
+# sudo add-apt-repository ppa:appimagelauncher-team/stable
+# sudo apt update
+# sudo apt install appimagelauncher
