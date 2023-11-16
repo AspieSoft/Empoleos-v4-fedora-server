@@ -25,7 +25,7 @@ sudo systemctl disable remote-fs.target
 
 sudo dnf -y --noautoremove remove dmraid device-mapper-multipath
 
-# change grup timeout
+# change grub timeout
 sudo sed -r -i 's/^GRUB_TIMEOUT=(.*)$/GRUB_TIMEOUT=0/m' /etc/default/grub
 sudo update-grub
 sudo grub2-editenv - set menu_auto_hide=1
