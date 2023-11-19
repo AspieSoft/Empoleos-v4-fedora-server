@@ -27,7 +27,7 @@ rm -rf jetbrains-mono.zip jetbrains-mono
 # config
 sudo update-alternatives --config gdm3-theme.gresource
 
-# fix compatability
+# fix compatibility
 sudo dnf -y install plasma-framework
 
 # setup gdm config
