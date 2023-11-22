@@ -18,7 +18,7 @@ sudo systemctl enable thermald --now
 
 # disable time wasting startup programs
 sudo systemctl disable postfix.service # for email server
-sudo systemctl disable NetworkManager-wait-online.service # wastes time connectiong to wifi
+sudo systemctl disable NetworkManager-wait-online.service # wastes time connecting to wifi
 sudo systemctl disable networkd-dispatcher.service # depends on the time waster above
 sudo systemctl disable systemd-networkd.service # depends on the time waster above
 sudo systemctl disable accounts-daemon.service # is a potential securite risk
